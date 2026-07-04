@@ -588,6 +588,7 @@ st.dataframe(
     df,
     use_container_width=True
 )
+
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 import io
@@ -595,48 +596,62 @@ import io
 st.divider()
 st.header("📄 Generate PDF Report")
 
-if st.button("📥 Download Patient Report PDF"):
+# Get latest record from DB for report
+latest_df = pd.read_sql_query(
+    "SELECT * FROM diabetes ORDER BY id DESC LIMIT 1",
+    conn
+)
 
-    buffer = io.BytesIO()
-    p = canvas.Canvas(buffer, pagesize=letter)
+if len(latest_df) > 0:
 
-    p.setFont("Helvetica-Bold", 14)
-    p.drawString(50, 750, "Diabetes Report")
+    latest = latest_df.iloc[0]
 
-    p.setFont("Helvetica", 10)
-    p.drawString(50, 720, f"Patient Name: {name}")
-    p.drawString(50, 700, f"Date: {record_date}")
+    if st.button("📥 Download Latest Patient Report PDF"):
 
-    y = 670
+        buffer = io.BytesIO()
+        p = canvas.Canvas(buffer, pagesize=letter)
 
-    if fasting > 0:
-        p.drawString(50, y, f"Fasting: {fasting} mg/dL")
+        p.setFont("Helvetica-Bold", 14)
+        p.drawString(50, 750, "Diabetes Report")
+
+        p.setFont("Helvetica", 10)
+
+        p.drawString(50, 720, f"Patient Name: {latest['patient_name']}")
+        p.drawString(50, 700, f"Date: {latest['record_date']}")
+
+        y = 670
+
+        if pd.notna(latest["fasting"]):
+            p.drawString(50, y, f"Fasting: {latest['fasting']} mg/dL")
+            y -= 20
+
+        if pd.notna(latest["post_meal"]):
+            p.drawString(50, y, f"Post Meal: {latest['post_meal']} mg/dL")
+            y -= 20
+
+        if pd.notna(latest["random_bs"]):
+            p.drawString(50, y, f"Random: {latest['random_bs']} mg/dL")
+            y -= 20
+
+        if pd.notna(latest["hba1c"]):
+            p.drawString(50, y, f"HbA1c: {latest['hba1c']}%")
+            y -= 20
+
         y -= 20
+        p.drawString(50, y, "⚠ Educational Report Only - Not Medical Diagnosis")
 
-    if post_meal > 0:
-        p.drawString(50, y, f"Post Meal: {post_meal} mg/dL")
-        y -= 20
+        p.showPage()
+        p.save()
 
-    if random_bs > 0:
-        p.drawString(50, y, f"Random: {random_bs} mg/dL")
-        y -= 20
+        buffer.seek(0)
 
-    if hba1c > 0:
-        p.drawString(50, y, f"HbA1c: {hba1c}%")
-        y -= 20
+        st.download_button(
+            label="⬇ Download PDF",
+            data=buffer,
+            file_name="diabetes_report.pdf",
+            mime="application/pdf"
+        )
 
-    y -= 20
-    p.drawString(50, y, "⚠ This report is for educational purposes only.")
-
-    p.showPage()
-    p.save()
-
-    buffer.seek(0)
-
-    st.download_button(
-        label="⬇ Download PDF",
-        data=buffer,
-        file_name="diabetes_report.pdf",
-        mime="application/pdf"
-    )
+else:
+    st.info("No records found for PDF report.")
 conn.close()
