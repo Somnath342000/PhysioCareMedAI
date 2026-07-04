@@ -263,6 +263,56 @@ ana = st.selectbox(
     ["Not Done","Negative","Positive"]
 )
 #-------------------
+st.divider()
+
+st.header("🩸 Coagulation Profile")
+
+pt = st.number_input(
+    "Prothrombin Time (PT) (seconds)",
+    min_value=0.0,
+    value=0.0,
+    step=0.1
+)
+
+inr = st.number_input(
+    "INR",
+    min_value=0.0,
+    value=0.0,
+    step=0.1
+)
+
+aptt = st.number_input(
+    "aPTT (seconds)",
+    min_value=0.0,
+    value=0.0,
+    step=0.1
+)
+#-----------------
+st.divider()
+
+st.header("❤️ Cardiac Markers")
+
+troponin = st.number_input(
+    "Troponin I (ng/mL)",
+    min_value=0.0,
+    value=0.0,
+    step=0.01
+)
+
+ckmb = st.number_input(
+    "CK-MB (ng/mL)",
+    min_value=0.0,
+    value=0.0,
+    step=0.1
+)
+
+bnp = st.number_input(
+    "BNP (pg/mL)",
+    min_value=0.0,
+    value=0.0,
+    step=1.0
+)
+#-------------
 #-------------------
 if st.button("🔍 Analyze Report"):
 
@@ -726,7 +776,10 @@ elif ana=="Negative":
 
     st.success("ANA Result : Negative")
 #-------------------
+
 #-------------------
+#-----------------
+#---------------
 
 st.divider()
 
@@ -879,7 +932,109 @@ These tests should always be interpreted together with symptoms, physical examin
 
 """)
 #-------------------
+st.divider()
+
+with st.expander("❤️ Importance of Coagulation & Cardiac Markers"):
+
+    st.write("""
+Coagulation Profile evaluates how well your blood clots.
+
+• PT measures the extrinsic clotting pathway.
+
+• INR standardizes PT and is commonly used to monitor warfarin therapy.
+
+• aPTT evaluates the intrinsic clotting pathway.
+
+Cardiac Markers help assess possible heart muscle injury.
+
+• Troponin is the most specific blood marker for myocardial injury.
+
+• CK-MB may increase after damage to heart muscle.
+
+• BNP helps assess heart failure and cardiac stress.
+
+Abnormal results require interpretation together with symptoms, ECG findings and other investigations by a qualified healthcare professional.
+""")
 #-------------------
+st.subheader("🩸 Coagulation Profile Analysis")
+
+# PT
+if pt > 0:
+
+    if 11 <= pt <= 13.5:
+        st.success(f"PT : {pt} sec → Normal")
+
+    elif pt > 13.5:
+        st.warning(f"PT : {pt} sec → Prolonged")
+        st.info("A prolonged PT may occur with liver disease, vitamin K deficiency or anticoagulant therapy.")
+
+    else:
+        st.warning(f"PT : {pt} sec → Slightly Low")
+
+
+# INR
+if inr > 0:
+
+    if 0.8 <= inr <= 1.2:
+        st.success(f"INR : {inr} → Normal")
+
+    elif inr > 1.2:
+        st.warning(f"INR : {inr} → Elevated")
+        st.info("An elevated INR may increase bleeding risk depending on the clinical situation.")
+
+    else:
+        st.warning(f"INR : {inr} → Low")
+
+
+# aPTT
+if aptt > 0:
+
+    if 25 <= aptt <= 35:
+        st.success(f"aPTT : {aptt} sec → Normal")
+
+    else:
+        st.warning(f"aPTT : {aptt} sec → Abnormal")
+        st.info("Abnormal aPTT may indicate a coagulation disorder or anticoagulant effect.")
+#-------------------
+st.subheader("❤️ Cardiac Marker Analysis")
+
+# Troponin
+if troponin > 0:
+
+    if troponin < 0.04:
+        st.success(f"Troponin I : {troponin} ng/mL → Normal")
+
+    else:
+        st.error(f"Troponin I : {troponin} ng/mL → Elevated")
+        st.warning("Elevated troponin may indicate heart muscle injury. Urgent medical evaluation is recommended.")
+
+
+# CK-MB
+if ckmb > 0:
+
+    if ckmb <= 5:
+        st.success(f"CK-MB : {ckmb} ng/mL → Normal")
+
+    else:
+        st.warning(f"CK-MB : {ckmb} ng/mL → Elevated")
+        st.info("An elevated CK-MB may be associated with heart muscle injury.")
+
+
+# BNP
+if bnp > 0:
+
+    if bnp < 100:
+        st.success(f"BNP : {bnp} pg/mL → Normal")
+
+    elif bnp <= 400:
+        st.warning(f"BNP : {bnp} pg/mL → Elevated")
+        st.info("An elevated BNP may be associated with heart failure and requires clinical assessment.")
+
+    else:
+        st.error(f"BNP : {bnp} pg/mL → Markedly Elevated")
+        st.warning("Please seek prompt medical evaluation.")
+#--------------------
+#-----------------
 
 st.warning("""
 ⚠️ This tool is for educational purposes only and does not replace
