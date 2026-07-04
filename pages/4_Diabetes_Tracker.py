@@ -127,8 +127,8 @@ if st.button("💾 Save Record"):
 
         st.success("Record Saved Successfully.")
 
-
 )
+st.divider()
 # ---------------- DIABETES RESULT ANALYSIS ---------------- #
 
 st.divider()
@@ -372,7 +372,7 @@ Always consult your physician regarding abnormal blood sugar results,
 symptoms, medication or treatment decisions.
 """)
 #---------#
-st.divider()
+
 
 # ---------------- PREVIOUS RECORDS ---------------- #
 
