@@ -127,7 +127,6 @@ if st.button("💾 Save Record"):
 
         st.success("Record Saved Successfully.")
 
-)
 st.divider()
 # ---------------- DIABETES RESULT ANALYSIS ---------------- #
 
@@ -386,4 +385,5 @@ df = pd.read_sql_query(
 st.dataframe(
     df,
     use_container_width=True
+)
 conn.close()
