@@ -407,6 +407,173 @@ if search_name:
         )
 
 st.divider()
+# ==========================================================
+# DASHBOARD & CHARTS
+# ==========================================================
+
+import plotly.express as px
+
+st.divider()
+st.header("📊 Diabetes Dashboard")
+
+df = pd.read_sql_query(
+    "SELECT * FROM diabetes ORDER BY record_date",
+    conn
+)
+
+if len(df) > 0:
+
+    df["record_date"] = pd.to_datetime(df["record_date"])
+
+    # ---------------- DATE FILTER ----------------
+
+    min_date = df["record_date"].min().date()
+    max_date = df["record_date"].max().date()
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        start_date = st.date_input(
+            "From",
+            min_date,
+            min_value=min_date,
+            max_value=max_date
+        )
+
+    with col2:
+        end_date = st.date_input(
+            "To",
+            max_date,
+            min_value=min_date,
+            max_value=max_date
+        )
+
+    filtered_df = df[
+        (df["record_date"].dt.date >= start_date) &
+        (df["record_date"].dt.date <= end_date)
+    ]
+
+    # ---------------- STATISTICS ----------------
+
+    st.subheader("📈 Statistics")
+
+    c1, c2, c3, c4 = st.columns(4)
+
+    c1.metric(
+        "Records",
+        len(filtered_df)
+    )
+
+    c2.metric(
+        "Avg Fasting",
+        round(filtered_df["fasting"].mean(),1)
+        if filtered_df["fasting"].notna().any()
+        else "-"
+    )
+
+    c3.metric(
+        "Avg Post Meal",
+        round(filtered_df["post_meal"].mean(),1)
+        if filtered_df["post_meal"].notna().any()
+        else "-"
+    )
+
+    c4.metric(
+        "Avg HbA1c",
+        round(filtered_df["hba1c"].mean(),1)
+        if filtered_df["hba1c"].notna().any()
+        else "-"
+    )
+
+    st.divider()
+
+    # ---------------- FASTING ----------------
+
+    fasting_df = filtered_df.dropna(subset=["fasting"])
+
+    if len(fasting_df)>0:
+
+        st.subheader("📊 Fasting Blood Sugar Trend")
+
+        fig = px.line(
+            fasting_df,
+            x="record_date",
+            y="fasting",
+            markers=True,
+            title="Fasting Blood Sugar"
+        )
+
+        st.plotly_chart(
+            fig,
+            use_container_width=True
+        )
+
+    # ---------------- POST MEAL ----------------
+
+    post_df = filtered_df.dropna(subset=["post_meal"])
+
+    if len(post_df)>0:
+
+        st.subheader("📊 Post Meal Blood Sugar Trend")
+
+        fig = px.line(
+            post_df,
+            x="record_date",
+            y="post_meal",
+            markers=True,
+            title="Post Meal Blood Sugar"
+        )
+
+        st.plotly_chart(
+            fig,
+            use_container_width=True
+        )
+
+    # ---------------- RANDOM ----------------
+
+    random_df = filtered_df.dropna(subset=["random_bs"])
+
+    if len(random_df)>0:
+
+        st.subheader("📊 Random Blood Sugar Trend")
+
+        fig = px.line(
+            random_df,
+            x="record_date",
+            y="random_bs",
+            markers=True,
+            title="Random Blood Sugar"
+        )
+
+        st.plotly_chart(
+            fig,
+            use_container_width=True
+        )
+
+    # ---------------- HBA1C ----------------
+
+    hba_df = filtered_df.dropna(subset=["hba1c"])
+
+    if len(hba_df)>0:
+
+        st.subheader("📊 HbA1c Trend")
+
+        fig = px.line(
+            hba_df,
+            x="record_date",
+            y="hba1c",
+            markers=True,
+            title="HbA1c"
+        )
+
+        st.plotly_chart(
+            fig,
+            use_container_width=True
+        )
+
+else:
+
+    st.info("No records available.")
 
 # ---------------- PREVIOUS RECORDS ---------------- #
 
