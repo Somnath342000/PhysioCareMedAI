@@ -44,7 +44,7 @@ def bp_category(sys, dia):
         return "Hypertensive Crisis"
 
 
-if st.button("💾 Save Record"):
+if st.button("Check BP Status"):
     category = bp_category(systolic, diastolic)
 
     cursor.execute("""
@@ -60,7 +60,7 @@ if st.button("💾 Save Record"):
 
 st.divider()
 
-st.subheader("📋 Saved Records")
+st.subheader("📋 Saved BP Records")
 
 df = pd.read_sql_query(
     "SELECT * FROM bp ORDER BY id DESC",
