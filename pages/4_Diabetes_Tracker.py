@@ -13,7 +13,7 @@ st.title("🩸 Diabetes Tracker")
 
 st.info("Fill only the tests you have. You don't need to enter all values.")
 
-# ---------------- DATABASE ---------------- #
+# ----------------- DATABASE ---------------- #
 
 conn = sqlite3.connect("physiocare.db", check_same_thread=False)
 cursor = conn.cursor()
