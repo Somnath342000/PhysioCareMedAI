@@ -372,6 +372,41 @@ symptoms, medication or treatment decisions.
 """)
 #---------#
 
+st.divider()
+
+st.subheader("🔍 Search Patient Records")
+
+search_name = st.text_input("Enter Patient Name")
+
+if search_name:
+
+    query = """
+    SELECT *
+    FROM diabetes
+    WHERE patient_name LIKE ?
+    ORDER BY record_date DESC
+    """
+
+    search_df = pd.read_sql_query(
+        query,
+        conn,
+        params=(f"%{search_name}%",)
+    )
+
+    if len(search_df)==0:
+
+        st.warning("No patient found.")
+
+    else:
+
+        st.success(f"{len(search_df)} Record(s) Found")
+
+        st.dataframe(
+            search_df,
+            use_container_width=True
+        )
+
+st.divider()
 
 # ---------------- PREVIOUS RECORDS ---------------- #
 
