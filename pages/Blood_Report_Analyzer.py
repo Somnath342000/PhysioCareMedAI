@@ -2567,3 +2567,103 @@ st.warning("""
 ⚠️ This tool is for educational purposes only and does not replace
 professional medical advice or diagnosis.
 """) 
+
+# Streamlit Page Configuration (Wide layout for optimal data visibility)
+st.set_page_config(page_title="Medical Lab Test Directory", layout="wide")
+
+st.title("📊 Interactive Medical Lab Test Directory")
+st.write("Search, filter, and review test codes, associated diseases, and specific timing instructions.")
+
+# 1. Core Dataset Creation (Pandas DataFrame)
+data = {
+    "Test Name": [
+        "FBS (Fasting Blood Sugar)", "PPBS (Post Meal Blood Sugar)", "RBS (Random Blood Sugar)", "HbA1c",
+        "Hemoglobin (Hb)", "WBC Count", "RBC Count", "Platelets", "ESR",
+        "Total Cholesterol", "HDL Cholesterol", "LDL Cholesterol", "Triglycerides",
+        "ALT / SGPT", "AST / SGOT", "Total Bilirubin", "Albumin", "Alkaline Phosphate (ALP)",
+        "Serum Creatinine", "Blood Urea", "Uric Acid", "eGFR",
+        "TSH", "Total T3", "Total T4",
+        "Sodium (Na+)", "Potassium (K+)", "Chloride (Cl-)", "Calcium", "Magnesium (Mg)", "Phosphorus",
+        "Vitamin D3", "Vitamin B12", "Serum Iron", "Ferritin", "TIBC",
+        "CRP (C-Reactive Protein)", "Rheumatoid Factor (RF)", "Anti-CCP Antibody", "ASO Titre", "ANA Test",
+        "Prothrombin Time (PT) / INR", "aPTT",
+        "Troponin (I or T)", "CK-MB", "BNP",
+        "Dengue NS1 Antigen", "Dengue IgM & IgG", "Malaria Antigen (Pv/Pf)", "Typhoid IgM (Typhidot)",
+        "HBsAg (Hepatitis B)", "Anti-HCV (Hepatitis C)", "HIV 1 & 2 Screening",
+        "PSA", "CEA", "CA-125", "CA-19-9", "AFP",
+        "Testosterone", "FSH", "LH", "Prolactin", "Estradiol (E2)", "Progesterone", "Morning Cortisol"
+    ],
+    "Test Code": [
+        "FBS_01", "PPBS_02", "RBS_03", "HBA1C_04",
+        "HB_01", "WBC_02", "RBC_03", "PLT_04", "ESR_05",
+        "CHOL_01", "HDL_02", "LDL_03", "TRIG_04",
+        "ALT_01", "AST_02", "BIL_03", "ALB_04", "ALP_05",
+        "CRE_01", "UREA_02", "URIC_03", "EGFR_04",
+        "TSH_01", "T3_03", "T4_02",
+        "SOD_01", "POT_02", "CHL_03", "CAL_04", "MAG_05", "PHO_06",
+        "VITD_01", "B12_02", "IRON_03", "FER_04", "TIBC_05",
+        "CRP_01", "RF_02", "ACCP_03", "ASO_04", "ANA_05",
+        "PT_01 / INR_02", "APTT_03",
+        "TROP_01", "CKMB_02", "BNP_03",
+        "DEN_NS1", "DEN_AB", "MAL_AG", "TYP_IGM",
+        "HBSAG", "HCV_AB", "HIV_SCR",
+        "PSA_01", "CEA_02", "CA125_03", "CA199_04", "AFP_05",
+        "TEST_01", "FSH_02", "LH_03", "PRL_04", "EST_05", "PROG_06", "CORT_07"
+    ],
+    "Potential Diseases / Conditions Checked": [
+        "Diabetes, Prediabetes, Insulin Resistance", "Diabetes management, Reactive Hypoglycemia", "Emergency Diabetes Screening, Hyperglycemia", "3-Month Average Diabetes Control, Prediabetes",
+        "Anemia, Blood loss, Polycythemia", "Infections, Inflammation, Leukemia, Allergy", "Anemia, Hypoxia, Erythrocytosis", "Dengue, Bleeding Disorders, Thrombocytopenia", "Tuberculosis, Autoimmune Diseases, Chronic Infection",
+        "Cardiovascular (Heart) Disease Risk, Hyperlipidemia", "Good Cholesterol tracking, Heart attack risk", "Atherosclerosis (Artery Clogging), Stroke Risk", "Fatty Liver, Acute Pancreatitis, Metabolic Syndrome",
+        "Fatty Liver, Hepatitis, Liver Injury/Cirrhosis", "Alcoholic Liver Disease, Heart/Muscle Damage", "Jaundice, Gallstones, Hemolytic Anemia", "Cirrhosis, Nephrotic Syndrome (Kidney Disease), Malnutrition", "Bile Duct Blockage, Bone Diseases, Paget's Disease",
+        "Chronic Kidney Disease (CKD), Acute Kidney Injury", "Kidney Dysfunction, Dehydration, Uremia", "Gout (Joint Pain), Kidney Stones", "Kidney Function Staging (CKD Stages)",
+        "Hypothyroidism, Hyperthyroidism, Goiter", "Graves' Disease, Thyroid Function", "Hashimoto's Thyroiditis, Thyroid Function",
+        "Severe Dehydration, Hyponatremia, Confusion", "Heart Arrhythmia (Palpitations), Muscle Cramps", "Acid-Base Imbalance, Severe Vomiting/Dehydration", "Bone thinning, Hyperparathyroidism, Muscle Spasms", "Chronic Muscle Twitches, Alcoholism Malnutrition", "Advanced Kidney Failure, Vitamin D disorders",
+        "Osteoporosis, Chronic Fatigue, Rickets", "Pernicious Anemia, Neuropathy (Pins/Needles in feet)", "Iron Deficiency Anemia, Hemochromatosis (Iron Overload)", "Iron Storage Deficiency, Chronic Inflammation", "Iron Deficiency Anemia Differentiation",
+        "Acute Bacterial Infection, Rheumatoid Flare-up", "Rheumatoid Arthritis (Severe joint pain & stiffness)", "Rheumatoid Arthritis Diagnosis (High Specificity)", "Rheumatic Fever (Migrating joint pain), Strep Throat", "Lupus (SLE), Sjogren's Syndrome, Autoimmune Screen",
+        "Warfarin Medication Monitoring, Bleeding Disorders", "Heparin Monitoring, Hemophilia (Genetic bleeding)",
+        "Heart Attack (Myocardial Infarction Emergency)", "Recent Heart Damage, Re-infarction Tracking", "Heart Failure (Severe shortness of breath/Edema)",
+        "Early Dengue Fever (Day 1 to 5 of fever)", "Current or Past Dengue Infection status", "Malaria (Fever with violent shivering/chills)", "Typhoid Fever (Step-ladder fever, stomach pain)",
+        "Hepatitis B Infection (Liver Jaundice or Silent)", "Hepatitis C Infection (Chronic Liver damage)", "HIV / AIDS screening",
+        "Prostate Cancer screening, Benign Prostate Hyperplasia", "Colorectal (Colon) Cancer Monitoring", "Ovarian Cancer Monitoring, Endometriosis", "Pancreatic Cancer, Gallbladder Cancer tracking", "Liver Cancer, Testicular Cancer, Germ Cell Tumors",
+        "Low Libido (Men), Infertility, PCOS (Women)", "Infertility, Menopause, PCOS evaluation", "Infertility, Ovulation Trigger Tracking", "Prolactinoma (Pituitary tumor), Galactorrhea", "Ovarian reserve, Menopause, IVF tracking", "Pregnancy maintenance, Miscarriage risk, Ovulation check", "Cushing’s Syndrome, Addison’s Disease (Adrenal)"
+    ],
+    "Best Test Time / Instructions": [
+        "Morning (Strictly 8-12 Hours Fasting)", "2 hours after starting a main meal", "Anytime (Regardless of food)", "Anytime (No fasting required)",
+        "Anytime", "Anytime", "Anytime", "Anytime", "Anytime",
+        "Morning (9-12 Hours Fasting preferred)", "Morning (9-12 Hours Fasting preferred)", "Morning (9-12 Hours Fasting preferred)", "Morning (9-12 Hours Fasting Mandatory)",
+        "Anytime (Avoid alcohol 48h before)", "Anytime (Avoid alcohol 48h before)", "Anytime (Morning preferred)", "Anytime", "Anytime (Fasting preferred)",
+        "Anytime (Avoid heavy workout before)", "Anytime", "Anytime", "Calculated Score (No extra time needed)",
+        "Morning (Due to diurnal variation)", "Morning preferred", "Morning preferred",
+        "Anytime", "Anytime", "Anytime", "Anytime", "Anytime", "Morning Fasting preferred",
+        "Anytime", "Anytime", "Morning (Fasting preferred)", "Morning (Fasting preferred)", "Morning (Fasting preferred)",
+        "Anytime", "Anytime", "Anytime", "Anytime", "Anytime",
+        "Anytime (Consistent time daily if on medicine)", "Anytime",
+        "Emergency (Anytime immediately with chest pain)", "Emergency (Anytime immediately with chest pain)", "Anytime",
+        "Anytime (Best within Day 1 to 5 of fever)", "Anytime (Best after Day 5 of fever)", "Anytime (Ideally during a fever spike)", "Anytime (Best after Day 3-4 of fever)",
+        "Anytime", "Anytime", "Anytime (Mind the window period)",
+        "Anytime (Avoid cycling 48h before)", "Anytime", "Anytime (Avoid during menstruation)", "Anytime", "Anytime",
+        "Morning (Between 7 AM - 10 AM)", "Day 2 to Day 5 of the menstrual cycle", "Day 2 to Day 5 of the menstrual cycle", "Morning (3-4 hours after waking up)", "Day 2 to Day 5 of cycle preferred", "Day 21 of cycle for Progesterone check", "Strictly Morning (Between 7 AM - 9 AM)"
+    ]
+}
+
+df = pd.DataFrame(data)
+
+# 2. Search Box Filter Interface
+search_query = st.text_input("🔍 Search by Test Name or Disease Name:", "")
+
+# 3. Dynamic Filtering Logic
+if search_query:
+    filtered_df = df[
+        df["Test Name"].str.contains(search_query, case=False) | 
+        df["Potential Diseases / Conditions Checked"].str.contains(search_query, case=False)
+    ]
+else:
+    filtered_df = df
+
+# 4. Interactive Spreadsheet Rendering
+st.dataframe(
+    filtered_df,
+    use_container_width=True,  # Scales elegantly across standard & ultra-wide screens
+    hide_index=True           # Removes default pandas integer indexing row lines
+)
+
