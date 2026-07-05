@@ -8,6 +8,11 @@ st.set_page_config(
 )
 
 st.title("🩸 Blood Report Analyzer")
+from pathlib import Path
+
+logo = Path(__file__).parent.parent / "Assets" / "Blood_Collection.jpg"
+st.image(str(logo), width=250)
+#-----
 st.info("Enter available blood test values. Leave the others as 0.")
 #-------------------
 st.divider()
