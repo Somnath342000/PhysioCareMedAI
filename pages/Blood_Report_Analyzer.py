@@ -40,6 +40,53 @@ hba1c = st.number_input(
     value=0.0,
     step=0.1
 )
+st.divider()
+with st.expander("🅰️ Why is Fasting Blood Sugar Important?"):
+
+    st.write("""
+Fasting Blood Sugar (FBS) measures your blood glucose level after at least
+8 hours without food. It is one of the most commonly used screening tests
+for diabetes and prediabetes.
+
+A normal fasting blood sugar indicates that your body is regulating glucose
+effectively. Elevated fasting levels may suggest insulin resistance or
+diabetes and should be discussed with a healthcare professional.
+""")
+
+with st.expander("🅱️ Why is Post Meal Blood Sugar Important?"):
+
+    st.write("""
+Post Meal Blood Sugar (PPBS) measures blood glucose about 2 hours after a
+meal. This test shows how well your body manages the rise in blood sugar
+after eating.
+
+High post-meal glucose may increase the risk of heart disease, stroke,
+kidney disease and nerve damage if it remains uncontrolled over time.
+""")
+
+with st.expander("🅲 Why is Random Blood Sugar Important?"):
+
+    st.write("""
+Random Blood Sugar (RBS) can be measured at any time of the day regardless
+of meals. It is often used when diabetes is suspected based on symptoms.
+
+A high random blood sugar, especially when accompanied by symptoms such as
+increased thirst, frequent urination or unexplained weight loss, should be
+assessed by a healthcare professional.
+""")
+
+with st.expander("🅳 Why is HbA1c Important?"):
+
+    st.write("""
+HbA1c reflects your average blood sugar level over approximately the last
+2 to 3 months. Unlike a single glucose reading, it provides a longer-term
+picture of blood sugar control.
+
+It is widely used to help diagnose diabetes and to monitor how effectively
+blood sugar has been managed over time.
+""")
+
+st.divider()
 #-------------
 st.header("Complete Blood Count (CBC)")
 
