@@ -95,6 +95,34 @@ wbc = st.number_input("WBC (/µL)", min_value=0, value=0)
 rbc = st.number_input("RBC (million/µL)", min_value=0.0, value=0.0, step=0.1)
 platelet = st.number_input("Platelet (/µL)", min_value=0, value=0)
 esr = st.number_input("ESR (mm/hr)", min_value=0, value=0)
+
+with st.expander("🔴 Hemoglobin (Hb) - Code: HB_01"):
+    st.write("""
+    **Hemoglobin** measures the protein in your red blood cells that carries oxygen to your body's organs and tissues.
+    - **Normal Range:** 12.1 - 17.2 g/dL (Varies by gender)
+    - **Significance:** Low levels indicate anemia, leading to fatigue and weakness.
+    """)
+
+with st.expander("⚪ White Blood Cells (WBC) - Code: WBC_02"):
+    st.write("""
+    **WBC** count measures the cells that fight infection in your body.
+    - **Normal Range:** 4,500 - 11,000 cells/µL
+    - **Significance:** High counts often indicate an ongoing infection or inflammation.
+    """)
+
+with st.expander("💉 Platelets - Code: PLT_04"):
+    st.write("""
+    **Platelets** are cell fragments that help your blood clot to stop bleeding.
+    - **Normal Range:** 150,000 - 450,000 /µL
+    - **Significance:** Low platelets can lead to excessive bruising or bleeding (commonly monitored in Dengue).
+    """)
+
+with st.expander("⏳ ESR (Erythrocyte Sedimentation Rate) - Code: ESR_05"):
+    st.write("""
+    **ESR** is a type of blood test that measures how quickly erythrocytes (red blood cells) settle at the bottom of a test tube.
+    - **Normal Range:** < 15-20 mm/hr
+    - **Significance:** A faster-than-normal rate can signal inflammation in the body.
+    """)
 #-------------------
 st.divider()
 
