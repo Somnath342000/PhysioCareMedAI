@@ -8,7 +8,39 @@ st.set_page_config(
 
 st.title("🩸 Blood Report Analyzer")
 st.info("Enter available blood test values. Leave the others as 0.")
+#-------------------
+st.divider()
 
+st.header("🩸 Diabetes Profile")
+
+fasting_bs = st.number_input(
+    "Fasting Blood Sugar (mg/dL)",
+    min_value=0.0,
+    value=0.0,
+    step=1.0
+)
+
+pp_bs = st.number_input(
+    "Post Meal Blood Sugar (mg/dL)",
+    min_value=0.0,
+    value=0.0,
+    step=1.0
+)
+
+random_bs = st.number_input(
+    "Random Blood Sugar (mg/dL)",
+    min_value=0.0,
+    value=0.0,
+    step=1.0
+)
+
+hba1c = st.number_input(
+    "HbA1c (%)",
+    min_value=0.0,
+    value=0.0,
+    step=0.1
+)
+#-------------
 st.header("Complete Blood Count (CBC)")
 
 hb = st.number_input("Hemoglobin (g/dL)", min_value=0.0, value=0.0, step=0.1)
@@ -313,10 +345,246 @@ bnp = st.number_input(
     step=1.0
 )
 #-------------
+st.divider()
+
+st.header("🦠 Infection Profile")
+
+dengue_ns1 = st.selectbox(
+    "Dengue NS1 Antigen",
+    ["Not Done","Negative","Positive"]
+)
+
+dengue_igm = st.selectbox(
+    "Dengue IgM",
+    ["Not Done","Negative","Positive"]
+)
+
+dengue_igg = st.selectbox(
+    "Dengue IgG",
+    ["Not Done","Negative","Positive"]
+)
+
+malaria = st.selectbox(
+    "Malaria Antigen",
+    ["Not Done","Negative","Positive"]
+)
+
+typhoid = st.selectbox(
+    "Typhoid (IgM / Widal)",
+    ["Not Done","Negative","Positive"]
+)
+
+hbsag = st.selectbox(
+    "HBsAg (Hepatitis B)",
+    ["Not Done","Negative","Positive"]
+)
+
+anti_hcv = st.selectbox(
+    "Anti-HCV",
+    ["Not Done","Negative","Positive"]
+)
+
+hiv = st.selectbox(
+    "HIV 1 & 2 Screening",
+    ["Not Done","Negative","Positive"]
+)
+#----------
+st.divider()
+
+st.header("🧬 Tumor Markers")
+
+psa = st.number_input(
+    "PSA (ng/mL)",
+    min_value=0.0,
+    value=0.0,
+    step=0.1
+)
+
+cea = st.number_input(
+    "CEA (ng/mL)",
+    min_value=0.0,
+    value=0.0,
+    step=0.1
+)
+
+ca125 = st.number_input(
+    "CA-125 (U/mL)",
+    min_value=0.0,
+    value=0.0,
+    step=0.1
+)
+
+ca199 = st.number_input(
+    "CA 19-9 (U/mL)",
+    min_value=0.0,
+    value=0.0,
+    step=0.1
+)
+
+afp = st.number_input(
+    "AFP (ng/mL)",
+    min_value=0.0,
+    value=0.0,
+    step=0.1
+)
+#--------
+st.divider()
+
+st.header("🧬 Hormone Profile")
+
+testosterone = st.number_input(
+    "Testosterone (ng/dL)",
+    min_value=0.0,
+    value=0.0,
+    step=1.0
+)
+
+fsh = st.number_input(
+    "FSH (mIU/mL)",
+    min_value=0.0,
+    value=0.0,
+    step=0.1
+)
+
+lh = st.number_input(
+    "LH (mIU/mL)",
+    min_value=0.0,
+    value=0.0,
+    step=0.1
+)
+
+prolactin = st.number_input(
+    "Prolactin (ng/mL)",
+    min_value=0.0,
+    value=0.0,
+    step=0.1
+)
+
+estradiol = st.number_input(
+    "Estradiol (pg/mL)",
+    min_value=0.0,
+    value=0.0,
+    step=1.0
+)
+
+progesterone = st.number_input(
+    "Progesterone (ng/mL)",
+    min_value=0.0,
+    value=0.0,
+    step=0.1
+)
+
+cortisol = st.number_input(
+    "Morning Cortisol (µg/dL)",
+    min_value=0.0,
+    value=0.0,
+    step=0.1
+)
+
+#-----
+#-------
 #-------------------
 if st.button("🔍 Analyze Report"):
+#---------
+  st.divider()
+st.header("🩸 Diabetes Profile Analysis")
 
-    st.header("📋 CBC Analysis")
+# ---------- FBS ----------
+if fasting_bs > 0:
+
+    if fasting_bs < 70:
+        st.warning(f"Fasting Blood Sugar : {fasting_bs} mg/dL → Low (Hypoglycemia)")
+
+    elif fasting_bs <= 99:
+        st.success(f"Fasting Blood Sugar : {fasting_bs} mg/dL → Normal")
+
+    elif fasting_bs <= 125:
+        st.warning(f"Fasting Blood Sugar : {fasting_bs} mg/dL → Prediabetes")
+
+    else:
+        st.error(f"Fasting Blood Sugar : {fasting_bs} mg/dL → Diabetes Range")
+
+
+# ---------- PPBS ----------
+if pp_bs > 0:
+
+    if pp_bs < 140:
+        st.success(f"Post Meal Blood Sugar : {pp_bs} mg/dL → Normal")
+
+    elif pp_bs <= 199:
+        st.warning(f"Post Meal Blood Sugar : {pp_bs} mg/dL → Prediabetes")
+
+    else:
+        st.error(f"Post Meal Blood Sugar : {pp_bs} mg/dL → Diabetes Range")
+
+
+# ---------- Random ----------
+if random_bs > 0:
+
+    if random_bs < 140:
+        st.success(f"Random Blood Sugar : {random_bs} mg/dL → Normal")
+
+    elif random_bs < 200:
+        st.warning(f"Random Blood Sugar : {random_bs} mg/dL → Elevated")
+
+    else:
+        st.error(f"Random Blood Sugar : {random_bs} mg/dL → Diabetes Range")
+
+
+# ---------- HbA1c ----------
+if hba1c > 0:
+
+    if hba1c < 5.7:
+        st.success(f"HbA1c : {hba1c}% → Normal")
+
+    elif hba1c < 6.5:
+        st.warning(f"HbA1c : {hba1c}% → Prediabetes")
+
+    else:
+        st.error(f"HbA1c : {hba1c}% → Diabetes Range")
+    #---------
+st.divider()
+
+st.subheader("🩺 Overall Diabetes Summary")
+
+diabetes_flag = False
+prediabetes_flag = False
+
+if fasting_bs >= 126:
+    diabetes_flag = True
+elif 100 <= fasting_bs <= 125:
+    prediabetes_flag = True
+
+if pp_bs >= 200:
+    diabetes_flag = True
+elif 140 <= pp_bs <= 199:
+    prediabetes_flag = True
+
+if random_bs >= 200:
+    diabetes_flag = True
+elif 140 <= random_bs < 200:
+    prediabetes_flag = True
+
+if hba1c >= 6.5:
+    diabetes_flag = True
+elif 5.7 <= hba1c < 6.5:
+    prediabetes_flag = True
+
+if diabetes_flag:
+    st.error("🔴 Overall Interpretation: Results are in the Diabetes Range.")
+    st.info("These results should be evaluated by a qualified healthcare professional. Diagnosis should not be based on a single test result alone.")
+
+elif prediabetes_flag:
+    st.warning("🟡 Overall Interpretation: Results suggest Prediabetes.")
+    st.info("Lifestyle changes and follow-up testing may be appropriate. Please consult your healthcare provider.")
+
+else:
+    st.success("🟢 Overall Interpretation: Results are within the common reference ranges.")
+
+#--------
+
+
+    st.subheader("📋 CBC Analysis")
 
     # Hemoglobin
     if hb > 0:
@@ -854,14 +1122,214 @@ if bnp > 0:
         st.error(f"BNP : {bnp} pg/mL → Markedly Elevated")
         st.warning("Please seek prompt medical evaluation.")
 #--------------------
+st.divider()
 
+st.subheader("🦠 Infection Profile Analysis")
+
+# Dengue NS1
+if dengue_ns1 == "Positive":
+    st.error("🦟 Dengue NS1 : Positive")
+    st.info("A positive Dengue NS1 result may indicate an early dengue infection. Please consult a qualified healthcare professional.")
+
+elif dengue_ns1 == "Negative":
+    st.success("🦟 Dengue NS1 : Negative")
+
+
+# Dengue IgM
+if dengue_igm == "Positive":
+    st.warning("🦟 Dengue IgM : Positive")
+    st.info("A positive Dengue IgM may suggest a recent dengue infection.")
+
+elif dengue_igm == "Negative":
+    st.success("🦟 Dengue IgM : Negative")
+
+
+# Dengue IgG
+if dengue_igg == "Positive":
+    st.warning("🦟 Dengue IgG : Positive")
+    st.info("A positive Dengue IgG may indicate past exposure or a secondary dengue infection.")
+
+elif dengue_igg == "Negative":
+    st.success("🦟 Dengue IgG : Negative")
+
+
+# Malaria
+if malaria == "Positive":
+    st.error("🦟 Malaria Antigen : Positive")
+    st.info("A positive malaria test requires prompt medical evaluation and appropriate treatment.")
+
+elif malaria == "Negative":
+    st.success("🦟 Malaria Antigen : Negative")
+
+
+# Typhoid
+if typhoid == "Positive":
+    st.warning("🧫 Typhoid Test : Positive")
+    st.info("A positive typhoid screening test should be interpreted together with symptoms and, when appropriate, confirmatory testing.")
+
+elif typhoid == "Negative":
+    st.success("🧫 Typhoid Test : Negative")
+
+
+# Hepatitis B
+if hbsag == "Positive":
+    st.error("🦠 HBsAg : Positive")
+    st.info("A positive HBsAg suggests hepatitis B infection and requires evaluation by a qualified healthcare professional.")
+
+elif hbsag == "Negative":
+    st.success("🦠 HBsAg : Negative")
+
+
+# Hepatitis C
+if anti_hcv == "Positive":
+    st.error("🦠 Anti-HCV : Positive")
+    st.info("A positive Anti-HCV screening test should be confirmed with additional testing as advised by a healthcare professional.")
+
+elif anti_hcv == "Negative":
+    st.success("🦠 Anti-HCV : Negative")
+
+
+# HIV
+if hiv == "Positive":
+    st.error("🦠 HIV Screening : Reactive / Positive")
+    st.info("A reactive HIV screening result requires confirmatory testing and consultation with a qualified healthcare professional.")
+
+elif hiv == "Negative":
+    st.success("🦠 HIV Screening : Negative")
 #-------------------
+st.subheader("🧬 Tumor Marker Analysis")
+
+# PSA
+if psa > 0:
+
+    if psa <= 4:
+        st.success(f"PSA : {psa} ng/mL → Within Common Reference Range")
+
+    else:
+        st.warning(f"PSA : {psa} ng/mL → Above Common Reference Range")
+        st.info("An elevated PSA may occur with prostate enlargement, prostatitis or prostate cancer. Further medical evaluation is required.")
+
+# CEA
+if cea > 0:
+
+    if cea <= 5:
+        st.success(f"CEA : {cea} ng/mL → Within Common Reference Range")
+
+    else:
+        st.warning(f"CEA : {cea} ng/mL → Elevated")
+        st.info("CEA may increase in several cancers and also in some non-cancerous conditions such as smoking or inflammation.")
+
+# CA-125
+if ca125 > 0:
+
+    if ca125 <= 35:
+        st.success(f"CA-125 : {ca125} U/mL → Within Common Reference Range")
+
+    else:
+        st.warning(f"CA-125 : {ca125} U/mL → Elevated")
+        st.info("An elevated CA-125 may be associated with ovarian disorders or other benign and malignant conditions.")
+
+# CA19-9
+if ca199 > 0:
+
+    if ca199 <= 37:
+        st.success(f"CA 19-9 : {ca199} U/mL → Within Common Reference Range")
+
+    else:
+        st.warning(f"CA 19-9 : {ca199} U/mL → Elevated")
+        st.info("CA 19-9 may be elevated in pancreatic or biliary diseases and other conditions.")
+
+# AFP
+if afp > 0:
+
+    if afp <= 10:
+        st.success(f"AFP : {afp} ng/mL → Within Common Reference Range")
+
+    else:
+        st.warning(f"AFP : {afp} ng/mL → Elevated")
+        st.info("AFP may be elevated in liver disease, pregnancy and some cancers. Clinical correlation is necessary.")
 #-----------------
+st.divider()
+
+st.subheader("🧬 Hormone Profile Analysis")
+
+# Testosterone
+if testosterone > 0:
+    if 300 <= testosterone <= 1000:
+        st.success(f"Testosterone: {testosterone} ng/dL → Within Common Adult Male Reference Range")
+    else:
+        st.warning(f"Testosterone: {testosterone} ng/dL → Outside Common Adult Male Reference Range")
+        st.info("Reference ranges differ by sex and age. Clinical interpretation is required.")
+
+# FSH
+if fsh > 0:
+    if 1 <= fsh <= 12:
+        st.success(f"FSH: {fsh} mIU/mL → Within Common Reference Range")
+    else:
+        st.warning(f"FSH: {fsh} mIU/mL → Outside Common Reference Range")
+        st.info("FSH interpretation depends on age, sex and menstrual status.")
+
+# LH
+if lh > 0:
+    if 1 <= lh <= 9:
+        st.success(f"LH: {lh} mIU/mL → Within Common Reference Range")
+    else:
+        st.warning(f"LH: {lh} mIU/mL → Outside Common Reference Range")
+        st.info("LH reference values vary with age, sex and menstrual cycle.")
+
+# Prolactin
+if prolactin > 0:
+    if 5 <= prolactin <= 25:
+        st.success(f"Prolactin: {prolactin} ng/mL → Within Common Reference Range")
+    else:
+        st.warning(f"Prolactin: {prolactin} ng/mL → Outside Common Reference Range")
+        st.info("Prolactin may be affected by pregnancy, medications and pituitary disorders.")
+
+# Estradiol
+if estradiol > 0:
+    st.info(f"Estradiol: {estradiol} pg/mL")
+    st.write("Interpretation depends on sex, age and menstrual cycle phase.")
+
+# Progesterone
+if progesterone > 0:
+    st.info(f"Progesterone: {progesterone} ng/mL")
+    st.write("Interpretation depends on menstrual cycle phase or pregnancy status.")
+
+# Cortisol
+if cortisol > 0:
+    if 5 <= cortisol <= 25:
+        st.success(f"Cortisol: {cortisol} µg/dL → Within Common Morning Reference Range")
+    else:
+        st.warning(f"Cortisol: {cortisol} µg/dL → Outside Common Morning Reference Range")
+        st.info("Cortisol levels vary with time of day and clinical conditions.")
+
+#----------
+
 #---------------
 
 st.divider()
 
 #-----------------------#
+st.divider()
+
+with st.expander("🩸 Importance of Diabetes Profile"):
+
+    st.write("""
+The Diabetes Profile helps evaluate blood glucose control and supports the screening and monitoring of diabetes mellitus.
+
+• Fasting Blood Sugar measures blood glucose after at least 8 hours without food.
+
+• Post Meal Blood Sugar assesses how the body handles glucose approximately 2 hours after eating.
+
+• Random Blood Sugar provides a glucose measurement at any time and may support evaluation when symptoms are present.
+
+• HbA1c reflects the average blood glucose level over the previous 2–3 months and is widely used for long-term monitoring.
+
+Results should always be interpreted together with symptoms, medical history and advice from a qualified healthcare professional.
+""")
+
+#-------
+
 with st.expander("📚 About CBC Tests"):
     st.write("""
 **Hemoglobin (Hb):** Carries oxygen in the blood.
@@ -1035,7 +1503,162 @@ Abnormal results require interpretation together with symptoms, ECG findings and
 """)
 
 #-----------------
+# =====================================================
+# IMPORTANCE OF INFECTION TESTS
+# =====================================================
+
+st.divider()
+
+with st.expander("🦠 Importance of Infection Profile"):
+
+    st.write("""
+The Infection Profile includes commonly used screening tests for infectious diseases.
+
+• Dengue NS1 is useful during the early stage of dengue fever.
+
+• Dengue IgM usually indicates a recent dengue infection.
+
+• Dengue IgG may indicate previous exposure or a secondary infection.
+
+• Malaria Antigen helps rapidly detect malaria parasites.
+
+• Typhoid tests may support the diagnosis of typhoid fever when interpreted together with symptoms and other investigations.
+
+• HBsAg is a screening test for Hepatitis B infection.
+
+• Anti-HCV is a screening test for Hepatitis C infection.
+
+• HIV screening tests help detect possible HIV infection but reactive results require confirmatory testing.
+
+These tests should always be interpreted together with the patient's symptoms, history, physical examination and additional laboratory investigations.
+""")
+
+# =====================================================
+# OVERALL INFECTION SUMMARY
+# =====================================================
+
+st.divider()
+
+st.header("🩺 Overall Infection Summary")
+
+positive_tests = []
+
+if dengue_ns1 == "Positive":
+    positive_tests.append("Dengue NS1")
+
+if dengue_igm == "Positive":
+    positive_tests.append("Dengue IgM")
+
+if dengue_igg == "Positive":
+    positive_tests.append("Dengue IgG")
+
+if malaria == "Positive":
+    positive_tests.append("Malaria Antigen")
+
+if typhoid == "Positive":
+    positive_tests.append("Typhoid")
+
+if hbsag == "Positive":
+    positive_tests.append("HBsAg")
+
+if anti_hcv == "Positive":
+    positive_tests.append("Anti-HCV")
+
+if hiv == "Positive":
+    positive_tests.append("HIV Screening")
+
+if len(positive_tests) == 0:
+
+    st.success("🟢 No Positive Infection Screening Tests Entered.")
+
+    st.write("""
+• Continue maintaining good hygiene.
+
+• Drink safe water.
+
+• Eat hygienic food.
+
+• Complete recommended vaccinations.
+
+• Consult your healthcare provider if symptoms develop despite negative screening tests.
+""")
+
+else:
+
+    st.warning("🟡 Positive Tests Detected")
+
+    st.write("Positive Results:")
+
+    for test in positive_tests:
+        st.write(f"• {test}")
+
+    st.info("""
+Positive screening tests do not always confirm a diagnosis.
+
+Further clinical evaluation, confirmatory laboratory tests and medical consultation are recommended before making treatment decisions.
+""")
+
+# =====================================================
+# MEDICAL DISCLAIMER
+# =====================================================
+
+st.divider()
+
+st.warning("""
+⚠️ Medical Disclaimer
+
+This Infection Profile provides educational interpretation only.
+
+It is NOT intended to diagnose or rule out any infectious disease.
+
+Always consult a qualified healthcare professional for confirmation, diagnosis and treatment decisions.
+""")
 #------------------
+st.divider()
+
+with st.expander("🧬 Importance of Tumor Markers"):
+
+    st.write("""
+Tumor markers are substances that may be measured in blood and can assist healthcare professionals during the evaluation or monitoring of certain diseases.
+
+• PSA is commonly used in the assessment of prostate disorders.
+
+• CEA may be used during follow-up of some gastrointestinal and other cancers.
+
+• CA-125 is often used during the evaluation and monitoring of certain ovarian conditions.
+
+• CA 19-9 may be used alongside other investigations for pancreatic and biliary diseases.
+
+• AFP may assist in the evaluation of certain liver diseases and specific tumors.
+
+Tumor marker results alone cannot diagnose or exclude cancer. They must always be interpreted together with symptoms, physical examination, imaging studies and, when appropriate, biopsy findings by a qualified healthcare professional.
+""")
+
+#---
+st.divider()
+
+with st.expander("🧬 Importance of Hormone Profile"):
+
+    st.write("""
+Hormone tests help assess the function of endocrine glands and reproductive health.
+
+• Testosterone supports muscle mass, bone health and reproductive function.
+
+• FSH and LH regulate reproductive hormone production and fertility.
+
+• Prolactin plays a role in lactation and may be elevated in pituitary disorders.
+
+• Estradiol is an important estrogen hormone involved in reproductive health.
+
+• Progesterone is essential for ovulation, menstrual regulation and pregnancy.
+
+• Cortisol is produced by the adrenal glands and helps regulate metabolism, stress response and immune function.
+
+Reference ranges vary according to age, sex, pregnancy status and, in women, the menstrual cycle. Hormone test results should always be interpreted by a qualified healthcare professional in the appropriate clinical context.
+""")
+#--------
+
+#-------------
 
 st.warning("""
 ⚠️ This tool is for educational purposes only and does not replace
