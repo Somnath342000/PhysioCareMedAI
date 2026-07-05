@@ -56,50 +56,69 @@ The Diabetes Profile helps evaluate blood glucose control and supports the scree
 
 Results should always be interpreted together with symptoms, medical history and advice from a qualified healthcare professional.
 """)
-with st.expander("🅰️ Why is Fasting Blood Sugar Important?"):
+# 1. Fasting Blood Sugar (FBS)
+with st.expander("🅰️ Fasting Blood Sugar (FBS) - Code: FBS_01"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **Fasting Blood Sugar (FBS)** measures the amount of glucose (sugar) in your blood after an overnight fast of strictly 8 to 12 hours. During this time, you can only drink plain water.
+    
+    ### 🎯 Importance of the Test
+    This is the foundational baseline test for diagnosing prediabetes and diabetes. It shows how well your body manages blood sugar without the immediate influence of food.
+    - **Normal Range:** 70 - 99 mg/dL.
+    
+    ### ⚠️ Symptoms: High vs. Low
+    * **If High (Hyperglycemia):** Indicates insulin resistance or diabetes. Symptoms include **excessive morning thirst, waking up multiple times at night to urinate, dry mouth, and blurry vision**.
+    * **If Low (Hypoglycemia):** Less than 70 mg/dL. Symptoms include **shakiness, sudden cold sweats, extreme hunger, dizziness, and a racing heart**.
+    """)
 
-    st.write("""
-Fasting Blood Sugar (FBS) measures your blood glucose level after at least
-8 hours without food. It is one of the most commonly used screening tests
-for diabetes and prediabetes.
+# 2. Post Meal Blood Sugar (PPBS)
+with st.expander("🅱️ Post Meal Blood Sugar (PPBS) - Code: PPBS_02"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **Post Prandial Blood Sugar (PPBS)** measures your blood glucose exactly **2 hours after you start eating** a meal. 
+    
+    ### 🎯 Importance of the Test
+    This test shows how effectively your body (specifically insulin) handles the carbohydrate load from your food. Sometimes fasting sugar is normal, but post-meal sugar spikes dangerously.
+    - **Normal Range:** Less than 140 mg/dL.
+    
+    ### ⚠️ Symptoms: High vs. Low
+    * **If High:** Indicates your body isn't producing enough insulin to handle meals. Symptoms include **extreme lethargy or sleepiness after eating (food coma), persistent brain fog, and sudden intense thirst**.
+    * **If Low:** Known as reactive hypoglycemia (sugar dropping too fast after a meal). Symptoms include **sudden anxiety, tremors, sweating, and confusion 1-3 hours after eating**.
+    """)
 
-A normal fasting blood sugar indicates that your body is regulating glucose
-effectively. Elevated fasting levels may suggest insulin resistance or
-diabetes and should be discussed with a healthcare professional.
-""")
+# 3. Random Blood Sugar (RBS)
+with st.expander("🅲 Random Blood Sugar (RBS) - Code: RBS_03"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **Random Blood Sugar (RBS)** can be measured at any time of the day, completely regardless of when you last ate.
+    
+    ### 🎯 Importance of the Test
+    It is used as a quick screening tool, especially in emergencies, or when severe diabetes is suspected based on sudden symptoms.
+    - **Normal Range:** Generally less than 140 mg/dL (A reading of 200 mg/dL or higher, accompanied by symptoms, confirms diabetes).
+    
+    ### ⚠️ Symptoms: High vs. Low
+    * **If High:** You may experience the classic "Three Ps" of diabetes: **Polyuria (frequent urination), Polydipsia (excessive thirst), and Polyphagia (extreme hunger despite eating)**. Unexplained weight loss is also common.
+    * **If Low:** Medical emergency. Symptoms include **severe weakness, fainting, clammy skin, and slurred speech**.
+    """)
 
-with st.expander("🅱️ Why is Post Meal Blood Sugar Important?"):
+# 4. HbA1c (Glycated Hemoglobin)
+with st.expander("🅳 HbA1c (3-Month Average) - Code: HBA1C_04"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **HbA1c** measures the percentage of red blood cells that have sugar attached to them (glycated). Because red blood cells live for about 3 months, this test reflects your average blood sugar level over the past 8 to 12 weeks.
+    
+    ### 🎯 Importance of the Test
+    This is the **gold standard** for diabetes management. Unlike FBS or PPBS, which can change based on yesterday's dinner or stress, HbA1c cannot be "cheated." It does not require fasting.
+    - **Normal Range:** Less than 5.7% (5.7% - 6.4% indicates Prediabetes; 6.5% or higher indicates Diabetes).
+    
+    ### ⚠️ Symptoms: High vs. Low
+    * **If High:** Indicates long-term uncontrolled blood sugar, leading to organ damage. Symptoms include **frequent skin or yeast infections, slow-healing wounds, and tingling/numbness in the hands or feet (Neuropathy)**.
+    * **If Low (< 4.0%):** Rare, usually caused by taking too much diabetes medication, severe anemia, or liver disease. Symptoms mirror chronic hypoglycemia (constant fatigue and dizziness).
+    """)
 
-    st.write("""
-Post Meal Blood Sugar (PPBS) measures blood glucose about 2 hours after a
-meal. This test shows how well your body manages the rise in blood sugar
-after eating.
+st.divider()
+st.info("💡 **Note:** Fasting Blood Sugar (FBS) requires a strict 8-12 hour fast. However, HbA1c requires absolutely no fasting and can be tested at any time of the day. If your app calculates health scores, an HbA1c > 7.0% for a known diabetic usually triggers an alert to adjust their medication.")
 
-High post-meal glucose may increase the risk of heart disease, stroke,
-kidney disease and nerve damage if it remains uncontrolled over time.
-""")
-
-with st.expander("🅲 Why is Random Blood Sugar Important?"):
-
-    st.write("""
-Random Blood Sugar (RBS) can be measured at any time of the day regardless
-of meals. It is often used when diabetes is suspected based on symptoms.
-
-A high random blood sugar, especially when accompanied by symptoms such as
-increased thirst, frequent urination or unexplained weight loss, should be
-assessed by a healthcare professional.
-""")
-
-with st.expander("🅳 Why is HbA1c Important?"):
-
-    st.write("""
-HbA1c reflects your average blood sugar level over approximately the last
-2 to 3 months. Unlike a single glucose reading, it provides a longer-term
-picture of blood sugar control.
-
-It is widely used to help diagnose diabetes and to monitor how effectively
-blood sugar has been managed over time.
-""")
 
 st.divider()
 #-------------
@@ -494,7 +513,7 @@ with st.expander("🟢 eGFR (The Ultimate Kidney Score) - Code: EGFR_04)"):
     """)
 
 st.divider()
-st.info("💡 **Developer Note:** A sudden spike in Creatinine and Urea can sometimes be temporary, caused by intense exercise, heavy red meat consumption the night before, or dehydration. Advise users to consult a nephrologist for persistent abnormal values.")
+st.info("💡 **Note:** A sudden spike in Creatinine and Urea can sometimes be temporary, caused by intense exercise, heavy red meat consumption the night before, or dehydration. Advise users to consult a nephrologist for persistent abnormal values.")
 
 #-------------------
 st.divider()
@@ -2548,8 +2567,3 @@ st.warning("""
 ⚠️ This tool is for educational purposes only and does not replace
 professional medical advice or diagnosis.
 """) 
-
-st.warning("""
-⚠️ This tool is for educational purposes only and does not replace
-professional medical advice or diagnosis.
-""")
