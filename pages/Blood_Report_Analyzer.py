@@ -1041,6 +1041,53 @@ Cardiac Markers help assess possible heart muscle injury.
 
 Abnormal results require interpretation together with symptoms, ECG findings and other investigations by a qualified healthcare professional.
 """)
+# 1. Prothrombin Time (PT)
+with st.expander("⏳ Prothrombin Time (PT) - Code: PT_01"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **Prothrombin Time (PT)** measures the exact number of seconds it takes for the liquid portion of your blood (plasma) to clot after specific substances are added. It primarily evaluates the "extrinsic" pathway of blood coagulation.
+    
+    ### 🎯 Importance of the Test
+    It checks for bleeding problems, liver damage (since the liver produces clotting proteins), or Vitamin K deficiency. It is also used before surgeries to ensure you won't bleed excessively.
+    - **Normal Range:** Typically $11 - 13.5$ seconds.
+    
+    ### ⚠️ Symptoms: High (Prolonged) vs. Low (Shortened)
+    * **If High (Prolonged / Takes longer to clot):** Your blood is too thin. Symptoms include **frequent or prolonged nosebleeds, bleeding gums after brushing, easy bruising (bruises appearing without injury)**, and heavy menstrual cycles.
+    * **If Low (Shortened / Clots too fast):** Rare, but indicates a higher tendency for blood to clot. Symptoms could relate to an active blood clot, such as unexplained leg swelling or pain (Deep Vein Thrombosis).
+    """)
+
+# 2. INR (International Normalized Ratio)
+with st.expander("🌍 INR (International Normalized Ratio) - Code: INR_02"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **INR** is not a separate test; it is a **standardized calculation** based on your PT result. Because different labs use different testing chemicals, the INR was created so that a clotting score in one country means the exact same thing in another.
+    
+    ### 🎯 Importance of the Test
+    This is the **gold standard** for monitoring patients on oral blood thinners/anticoagulants like **Warfarin (Coumadin)**. 
+    - **Normal Range:** $0.8 - 1.1$ for a healthy individual. (For patients on blood thinners, doctors usually target a higher therapeutic range of $2.0 - 3.0$).
+    
+    ### ⚠️ Symptoms: High vs. Low
+    * **If High (>3.0 or >5.0 in critical states):** The blood is dangerously thin, placing you at a high risk for internal bleeding. Symptoms include **blood in the urine or stool (dark, tarry stools), severe dizziness, sudden unprovoked severe headaches**, or bleeding from cuts that won't stop.
+    * **If Low (<0.8 or below therapeutic target):** The blood is too thick or the medicine isn't working. This significantly increases the risk of **unwanted blood clots, stroke, or heart attack**. Symptoms include sudden shortness of breath, chest pain, or weakness on one side of the body.
+    """)
+
+# 3. aPTT (Activated Partial Thromboplastin Time)
+with st.expander("⏱️ aPTT (Activated Partial Thromboplastin Time) - Code: APTT_03"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **aPTT** measures the time it takes for blood to clot, but it focuses on a different set of clotting proteins (the "intrinsic" and common pathways) compared to PT.
+    
+    ### 🎯 Importance of the Test
+    It is primarily used to monitor patients who are receiving **intravenous (IV) Heparin therapy** (an in-hospital blood thinner). It also helps screen for genetic bleeding disorders like **Hemophilia** or certain autoimmune conditions (like Antiphospholipid Syndrome).
+    - **Normal Range:** Typically $25 - 35$ seconds.
+    
+    ### ⚠️ Symptoms: High (Prolonged) vs. Low (Shortened)
+    * **If High (Prolonged):** Indicates a deficiency in clotting factors or heavy heparin use. Symptoms include **excessive bleeding from small cuts, joint pain and swelling (caused by internal bleeding into joints)**, and large hematomas (blood pooling under the skin).
+    * **If Low (Shortened):** Can be seen in early stages of severe conditions like DIC (Disseminated Intravascular Coagulation) or advanced cancers where the body is in a hypercoagulable (over-clotting) state. Symptoms involve a high risk of blood clots.
+    """)
+
+st.info("💡 **Note:** Coagulation tests are highly time-sensitive. The blood sample must be processed quickly in the lab for accurate results. If your app flags critical values, any INR above 4.5 or aPTT above 70 seconds usually warrants immediate medical notification.")
+
 st.divider()
 
 st.header("❤️ Cardiac Markers")
@@ -1065,6 +1112,57 @@ bnp = st.number_input(
     value=0.0,
     step=1.0
 )
+import streamlit as st
+
+st.subheader("🧪 Cardiac Markers & Heart Health Information")
+st.write("Understand the critical biomarkers used to detect heart muscle injury, heart attacks, and heart failure.")
+
+# 1. Troponin (Troponin I or T)
+with st.expander("🚨 Troponin (The Heart Attack Marker) - Code: TROP_01"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **Troponin** is a type of protein found specifically in your heart muscle cells. Under normal conditions, troponin stays inside the heart, and virtually none is found in the blood.
+    
+    ### 🎯 Importance of the Test
+    This is the **gold standard and most critical test** for diagnosing a **Heart Attack (Myocardial Infarction)**. When heart muscle cells die due to a lack of oxygen/blood flow, they rupture and leak troponin into the bloodstream. It can stay elevated for up to 1-2 weeks after a heart attack.
+    - **Normal Range:** Extremely low, typically less than $0.04$ ng/mL (depending on the specific high-sensitivity assay used).
+    
+    ### ⚠️ Symptoms: High vs. Low
+    * **If High:** Indicates active heart muscle damage. Emergency symptoms include **crushing chest pain or pressure (often radiating to the left arm, jaw, or back), sudden shortness of breath, excessive cold sweating (diaphoresis), dizziness, and severe anxiety**.
+    * **If Low/Normal:** Reassuring, meaning there is likely no acute, major damage to the heart muscle.
+    """)
+
+# 2. CK-MB (Creatine Kinase-MB)
+with st.expander("⏱️ CK-MB (Creatine Kinase-MB) - Code: CKMB_02"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **CK-MB** is an enzyme found primarily in heart muscle cells, though small amounts exist in skeletal muscles. 
+    
+    ### 🎯 Importance of the Test
+    While Troponin is now preferred for initial diagnoses, CK-MB rises and falls much quicker (returning to normal within 2-3 days). Therefore, it is highly useful for detecting a **re-infarction** (a second heart attack that happens shortly after the first one).
+    - **Normal Range:** Typically $3 - 5$ ng/mL or less than 5% of total CK.
+    
+    ### ⚠️ Symptoms: High vs. Low
+    * **If High:** Points to recent heart damage or intense skeletal muscle trauma. Symptoms mirror a heart attack: **chest tightness, nausea, lightheadedness, and unexplained fatigue**.
+    * **If Low:** Normal. It indicates that no significant heart muscle injury has occurred within the last 24 to 48 hours.
+    """)
+
+# 3. BNP (B-Type Natriuretic Peptide)
+with st.expander("🫁 BNP (The Heart Failure Marker) - Code: BNP_03"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **BNP** is a hormone produced and released by the heart’s left ventricle when it is overworked, stretched, or under too much pressure.
+    
+    ### 🎯 Importance of the Test
+    This test is the primary tool used to diagnose and monitor **Heart Failure**. It helps doctors quickly differentiate whether a patient's shortness of breath is caused by a heart problem (Heart Failure) or a lung problem (like Asthma or COPD).
+    - **Normal Range:** Less than $100$ pg/mL.
+    
+    ### ⚠️ Symptoms: High vs. Low
+    * **If High:** Indicates that the heart is struggling to pump blood efficiently, causing fluid to back up in the body. Symptoms include **severe shortness of breath (especially when lying flat on the back), persistent coughing or wheezing, extreme fatigue, and sudden swelling (edema) in the legs, ankles, or abdomen**.
+    * **If Low:** Highly reassuring. A low BNP level almost completely rules out heart failure as the cause of a patient's breathing difficulties.
+    """)
+st.error("🚨 **CRITICAL NOTE:** Troponin and CK-MB are time-critical emergency tests. If app processes live data, any significant elevation in Troponin must be flagged with a high-priority red alert instructing the user to call emergency services (e.g., 999/911) immediately.")
+
 #-------------
 st.divider()
 
@@ -1109,6 +1207,133 @@ hiv = st.selectbox(
     "HIV 1 & 2 Screening",
     ["Not Done","Negative","Positive"]
 )
+with st.expander("🦠 Importance of Infection Profile"):
+
+    st.write("""
+The Infection Profile includes commonly used screening tests for infectious diseases.
+
+• Dengue NS1 is useful during the early stage of dengue fever.
+
+• Dengue IgM usually indicates a recent dengue infection.
+
+• Dengue IgG may indicate previous exposure or a secondary infection.
+
+• Malaria Antigen helps rapidly detect malaria parasites.
+
+• Typhoid tests may support the diagnosis of typhoid fever when interpreted together with symptoms and other investigations.
+
+• HBsAg is a screening test for Hepatitis B infection.
+
+• Anti-HCV is a screening test for Hepatitis C infection.
+
+• HIV screening tests help detect possible HIV infection but reactive results require confirmatory testing.
+
+These tests should always be interpreted together with the patient's symptoms, history, physical examination and additional laboratory investigations.
+""")
+# 1. Dengue NS1 Antigen
+with st.expander("🦟 Dengue NS1 Antigen - Code: DEN_NS1"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **Dengue NS1** is a test that detects the Non-Structural Protein 1 (NS1) of the Dengue virus. This protein is secreted into the blood by the virus during its replication phase.
+    
+    ### 🎯 Importance of the Test
+    It is used for the **early detection** of Dengue fever. It can detect the virus from the **very 1st day of fever** up to day 5–7. After day 7, this antigen disappears from the blood.
+    - **Normal Result:** Negative (Non-reactive).
+    
+    ### ⚠️ Symptoms if Positive (Reactive)
+    Indicates an active, early-stage Dengue infection. Symptoms include **sudden high fever ($103-104^{\circ}\text{F}$), severe headache (especially behind the eyes), severe muscle and joint pain ("breakbone fever"), and skin rashes**.
+    """)
+
+# 2. Dengue IgM & IgG Antibodies
+with st.expander("🦟 Dengue IgM & IgG - Code: DEN_AB"):
+    st.markdown("""
+    ### 🩸 What is it?
+    This test looks for antibodies (**IgM** and **IgG**) produced by your immune system to fight the Dengue virus.
+    
+    ### 🎯 Importance of the Test
+    * **IgM:** Appears around day 4–5 of the fever and indicates a **current or very recent infection**.
+    * **IgG:** Appears later (after a week) or indicates a **past Dengue infection** in your life, giving you long-term immunity to that specific serotype.
+    - **Normal Result:** Negative.
+    
+    ### ⚠️ Symptoms if Positive (Reactive)
+    * **If IgM is Positive:** Active infection. Watch out for severe warning signs like **persistent vomiting, severe abdominal pain, bleeding gums/nose, and a sudden drop in blood platelets**.
+    * **If IgG is Positive (with negative IgM):** You had Dengue in the past; no immediate treatment is needed unless currently symptomatic.
+    """)
+
+# 3. Malaria Antigen (Pv/Pf)
+with st.expander("🦟 Malaria Antigen (Pv/Pf) - Code: MAL_AG"):
+    st.markdown("""
+    ### 🩸 What is it?
+    This rapid diagnostic test detects specific proteins produced by the *Plasmodium* parasites (specifically *Plasmodium vivax* and *Plasmodium falciparum*) transmitted through Anopheles mosquitoes.
+    
+    ### 🎯 Importance of the Test
+    It helps quickly identify malaria. Identifying *P. falciparum (Pf)* is critical because it causes cerebral malaria, which can be fatal if not treated immediately.
+    - **Normal Result:** Negative.
+    
+    ### ⚠️ Symptoms if Positive (Reactive)
+    Indicates active Malaria. Symptoms typically include **high fever with severe shaking chills (shivering), profuse sweating as the fever drops, intense headaches, and body aches**. In severe *Pf* cases, it can cause confusion or altered consciousness.
+    """)
+
+# 4. Typhoid IgM (Widal / Typhidot)
+with st.expander("🥣 Typhoid IgM (Typhidot) - Code: TYP_IGM"):
+    st.markdown("""
+    ### 🩸 What is it?
+    This test detects **IgM antibodies** against the *Salmonella typhi* bacteria, which enters the body through contaminated food or water and causes Typhoid fever.
+    
+    ### 🎯 Importance of the Test
+    The Typhidot (IgM) test is much faster and more accurate in the early phase (after 3-4 days of fever) compared to the traditional Widal test.
+    - **Normal Result:** Negative.
+    
+    ### ⚠️ Symptoms if Positive (Reactive)
+    Indicates active Typhoid fever. Symptoms include **step-ladder fever (fever that increases gradually day by day), severe stomach pain, diarrhea or severe constipation, extreme weakness, and a coated white tongue**.
+    """)
+
+# 5. HBsAg (Hepatitis B Surface Antigen)
+with st.expander("🟡 HBsAg (Hepatitis B Screening) - Code: HBSAG"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **HBsAg** is the surface antigen of the Hepatitis B virus (HBV). It is the earliest marker of a Hepatitis B infection, which affects the liver.
+    
+    ### 🎯 Importance of the Test
+    It screens for both acute and chronic Hep B. If it remains positive for more than 6 months, it indicates that the person has chronic Hepatitis B, which can lead to liver cirrhosis or liver cancer.
+    - **Normal Result:** Negative (Non-reactive).
+    
+    ### ⚠️ Symptoms if Positive (Reactive)
+    * **Acute Stage:** May cause **jaundice (yellow skin/eyes), dark tea-colored urine, extreme fatigue, loss of appetite, and nausea**.
+    * **Chronic Stage:** Often **completely silent with zero symptoms** for years, quietly damaging the liver.
+    """)
+
+# 6. Anti-HCV (Hepatitis C Antibody)
+with st.expander("🟠 Anti-HCV (Hepatitis C Screening) - Code: HCV_AB"):
+    st.markdown("""
+    ### 🩸 What is it?
+    This test detects antibodies produced by the body in response to a **Hepatitis C Virus (HCV)** infection, which is transmitted through infected blood or needles.
+    
+    ### 🎯 Importance of the Test
+    It is used to screen for exposure to Hep C. Unlike Hep B, there is no vaccine for Hep C, but it is highly curable with modern oral medications if caught early.
+    - **Normal Result:** Negative (Non-reactive).
+    
+    ### ⚠️ Symptoms if Positive (Reactive)
+    Most people with Hep C have **no symptoms** for decades. When symptoms finally appear, they indicate advanced liver scarring (Cirrhosis) and include **swelling in the legs/abdomen (ascites), easy bruising, skin itching, and confusion**.
+    """)
+
+# 7. HIV 1 & 2 Screening (ELISA / Rapid)
+with st.expander("🧬 HIV 1 & 2 Screening - Code: HIV_SCR"):
+    st.markdown("""
+    ### 🩸 What is it?
+    This test screens for antibodies and/or the p24 antigen against **Human Immunodeficiency Virus (HIV) types 1 and 2**, the viruses that cause AIDS.
+    
+    ### 🎯 Importance of the Test
+    Early diagnosis allows patients to start **Antiretroviral Therapy (ART)** immediately, ensuring they live a normal, healthy life expectancy and preventing the virus from spreading.
+    - **Normal Result:** Negative (Non-reactive).
+    
+    ### ⚠️ Symptoms if Positive (Reactive)
+    * **Early Stage (Acute HIV):** Occurs 2-4 weeks after exposure, presenting with **flu-like symptoms: fever, sore throat, swollen lymph nodes, and mouth ulcers**.
+    * **Latent Stage:** The virus can remain active but asymptomatic for 10+ years without medicine.
+    """)
+
+st.warning("⚠️ **CRITICAL NOTE:** A 'Positive' or 'Reactive' screening result for HBsAg, Anti-HCV, or HIV *does not* constitute a final diagnosis. These are screening tests and **MUST** always be followed by confirmatory molecular tests (like HBV DNA PCR, HCV RNA PCR, or Western Blot/HIV Viral Load) before confirming diagnosis.")
+
 #----------
 st.divider()
 
@@ -1148,6 +1373,95 @@ afp = st.number_input(
     value=0.0,
     step=0.1
 )
+with st.expander("🧬 Importance of Tumor Markers"):
+
+    st.write("""
+Tumor markers are substances that may be measured in blood and can assist healthcare professionals during the evaluation or monitoring of certain diseases.
+
+• PSA is commonly used in the assessment of prostate disorders.
+
+• CEA may be used during follow-up of some gastrointestinal and other cancers.
+
+• CA-125 is often used during the evaluation and monitoring of certain ovarian conditions.
+
+• CA 19-9 may be used alongside other investigations for pancreatic and biliary diseases.
+
+• AFP may assist in the evaluation of certain liver diseases and specific tumors.
+
+Tumor marker results alone cannot diagnose or exclude cancer. They must always be interpreted together with symptoms, physical examination, imaging studies and, when appropriate, biopsy findings by a qualified healthcare professional.
+""")
+# 1. PSA (Prostate-Specific Antigen)
+with st.expander("🎗️ PSA (Prostate-Specific Antigen) - Code: PSA_01"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **PSA** is a protein produced exclusively by the cells of the prostate gland in men. Small amounts of PSA normally circulate in the blood.
+    
+    ### 🎯 Importance of the Test
+    It is primarily used to screen for **Prostate Cancer** in men. It is also highly valuable for monitoring how well prostate cancer treatment is working or if the cancer has returned.
+    - **Normal Range:** Generally less than $4.0$ ng/mL (Increases slightly with age).
+    
+    ### ⚠️ Symptoms if the Level is High
+    An elevated PSA indicates prostate inflammation or abnormal growth (which can be benign or cancerous). Symptoms include **frequent urination (especially at night), difficulty starting or stopping urination, a weak urine stream**, or blood in the urine or semen.
+    """)
+
+# 2. CEA (Carcinoembryonic Antigen)
+with st.expander("🎗️ CEA (Carcinoembryonic Antigen) - Code: CEA_02"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **CEA** is a type of protein normally found in embryonic tissue during development. After birth, it drops to very low levels, but certain cancers can cause it to spike.
+    
+    ### 🎯 Importance of the Test
+    It is mainly used to track **Colorectal Cancer (Colon Cancer)**. It is not an ideal standalone screening tool because non-cancerous conditions (and heavy smoking) can raise it, but it is the gold standard for tracking treatment success.
+    - **Normal Range:** Less than $2.5$ ng/mL (Up to $5.0$ ng/mL can be normal for heavy smokers).
+    
+    ### ⚠️ Symptoms if the Level is High
+    Highly elevated levels usually track with advanced colorectal or gastrointestinal cancers. Symptoms include **unexplained weight loss, persistent change in bowel habits (chronic diarrhea or constipation), blood in the stool**, and constant abdominal discomfort.
+    """)
+
+# 3. CA-125 (Cancer Antigen 125)
+with st.expander("🎗️ CA-125 (Ovarian Cancer Marker) - Code: CA125_03"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **CA-125** is a protein found on the surface of most ovarian cancer cells. It is also found in small amounts in normal tissue.
+    
+    ### 🎯 Importance of the Test
+    It is used to monitor treatment for **Ovarian Cancer** and detect recurrence. It can also be checked if a woman has an ovarian mass or high genetic risk. (Note: Menstruation, pregnancy, and pelvic inflammatory disease can also cause spikes).
+    - **Normal Range:** Less than $35$ U/mL.
+    
+    ### ⚠️ Symptoms if the Level is High
+    Significantly high levels correlate with ovarian malignancy or severe pelvic inflammation. Symptoms include **persistent abdominal bloating or swelling, feeling full quickly when eating, pelvic pain**, and a frequent, urgent need to urinate.
+    """)
+
+# 4. CA-19-9 (Cancer Antigen 19-9)
+with st.expander("🎗️ CA-19-9 (Pancreatic Cancer Marker) - Code: CA199_04"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **CA-19-9** is a tumor-associated antigen that is heavily shed by pancreatic and biliary tract cancer cells.
+    
+    ### 🎯 Importance of the Test
+    It is the premier biomarker for managing and monitoring **Pancreatic Cancer** and bile duct cancers. It helps evaluate if a tumor is surgically removable or responding to chemotherapy.
+    - **Normal Range:** Less than $37$ U/mL.
+    
+    ### ⚠️ Symptoms if the Level is High
+    Correlates strongly with pancreatic or gallbladder disease. Symptoms include **severe upper abdominal pain radiating to the back, unexplained weight loss, new-onset diabetes in older adults, and obstructive jaundice** (yellowing of skin/eyes with pale stools).
+    """)
+
+# 5. AFP (Alpha-Fetoprotein)
+with st.expander("🎗️ AFP (Alpha-Fetoprotein) - Code: AFP_05"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **AFP** is a protein naturally produced by a developing baby's liver. In healthy non-pregnant adults, AFP levels should be extremely low or undetectable.
+    
+    ### 🎯 Importance of the Test
+    In adults, high AFP levels are a hallmark sign of **Liver Cancer (Hepatocellular Carcinoma)** or certain **Germ Cell Tumors** (testicular or ovarian cancer). It is routinely used to screen high-risk patients (like those with Cirrhosis or Hepatitis B).
+    - **Normal Range:** Less than $10$ ng/mL (for non-pregnant adults).
+    
+    ### ⚠️ Symptoms if the Level is High
+    * **If Liver Related:** Symptoms include **pain or a lump in the upper right side of the abdomen, loss of appetite, dark urine, and fluid accumulation in the belly (ascites)**.
+    * **If Testicular Related:** Symptoms include a painless lump or swelling in either testicle or a heavy feeling in the scrotum.
+    """)
+st.warning("⚠️ **CRITICAL CLINICAL NOTE:** Tumor markers are **NOT** definitive diagnostic tools for cancer on their own. Elevated levels can occur in non-cancerous conditions (e.g., PSA can rise due to a UTI; CA-125 can rise during a normal period). A definitive diagnosis always requires imaging (CT/MRI) and a tissue biopsy.")
+
 #--------
 st.divider()
 
@@ -1201,6 +1515,131 @@ cortisol = st.number_input(
     value=0.0,
     step=0.1
 )
+with st.expander("🧬 Importance of Hormone Profile"):
+
+    st.write("""
+Hormone tests help assess the function of endocrine glands and reproductive health.
+
+• Testosterone supports muscle mass, bone health and reproductive function.
+
+• FSH and LH regulate reproductive hormone production and fertility.
+
+• Prolactin plays a role in lactation and may be elevated in pituitary disorders.
+
+• Estradiol is an important estrogen hormone involved in reproductive health.
+
+• Progesterone is essential for ovulation, menstrual regulation and pregnancy.
+
+• Cortisol is produced by the adrenal glands and helps regulate metabolism, stress response and immune function.
+
+Reference ranges vary according to age, sex, pregnancy status and, in women, the menstrual cycle. Hormone test results should always be interpreted by a qualified healthcare professional in the appropriate clinical context.
+""")
+# 1. Testosterone
+with st.expander("🧬 Testosterone - Code: TEST_01"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **Testosterone** is the primary male sex hormone (androgen), though women also produce it in much smaller amounts. It regulates muscle mass, bone density, fat distribution, and sex drive.
+    
+    ### 🎯 Importance of the Test
+    Used to diagnose erectile dysfunction and infertility in men. In women, it is primarily used to evaluate conditions like **PCOS (Polycystic Ovary Syndrome)**.
+    - **Normal Range:** **Men:** $300 - 1,000$ ng/dL | **Women:** $15 - 70$ ng/dL.
+    
+    ### ⚠️ Symptoms: High vs. Low
+    * **If High:** In women (common in PCOS), it causes **excessive facial/body hair (hirsutism), severe acne, male-pattern baldness, and irregular periods**. In men, abnormally high levels are rare unless caused by steroid abuse, leading to aggression and low sperm count.
+    * **If Low:** In men, it causes **low sex drive (libido), chronic fatigue, loss of muscle mass, erectile dysfunction, and depression**.
+    """)
+
+# 2. FSH (Follicle-Stimulating Hormone)
+with st.expander("🥚 FSH (Follicle-Stimulating Hormone) - Code: FSH_02"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **FSH** is released by the pituitary gland. In women, it stimulates the growth of ovarian follicles (eggs); in men, it triggers sperm production in the testes.
+    
+    ### 🎯 Importance of the Test
+    Essential for evaluating infertility, irregular periods, and diagnosing the onset of **Menopause** in women or testicular failure in men.
+    - **Normal Range:** Varies drastically based on the menstrual cycle phase. Highly elevated in postmenopausal women ($>30$ mIU/mL).
+    
+    ### ⚠️ Symptoms: High vs. Low
+    * **If High:** In women, it signifies that the ovaries are failing to respond (e.g., **Menopause** or Primary Ovarian Insufficiency). Symptoms include **hot flashes, night sweats, mood swings, and absent periods**.
+    * **If Low:** Indicates a pituitary gland problem, leading to **infertility, lack of puberty in teens, and complete absence of ovulation or sperm production**.
+    """)
+
+# 3. LH (Luteinizing Hormone)
+with st.expander("⚡ LH (Luteinizing Hormone) - Code: LH_03"):
+    st.markdown("""
+    ### 🩸 What is it?
+    Like FSH, **LH** is a pituitary hormone. In women, a sudden spike in LH (the "LH surge") triggers **ovulation** (the release of a mature egg). In men, it tells the testes to produce testosterone.
+    
+    ### 🎯 Importance of the Test
+    Used alongside FSH to evaluate fertility issues, pituitary disorders, and PCOS (where the LH to FSH ratio is often abnormally high, like 2:1 or 3:1).
+    - **Normal Range:** Fluctuates based on the menstrual cycle phase.
+    
+    ### ⚠️ Symptoms: High vs. Low
+    * **If High:** Often associated with PCOS or ovarian failure. Symptoms include **irregular or painful periods, pelvic discomfort, and difficulty conceiving**.
+    * **If Low:** Leads to a lack of ovulation or low testosterone production. Symptoms include **amenorrhea (stopped periods) in women and low energy/erectile dysfunction in men**.
+    """)
+
+# 4. Prolactin
+with st.expander("🥛 Prolactin - Code: PRL_04"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **Prolactin** is a hormone produced by the pituitary gland. Its primary biological function is to stimulate and maintain breast milk production (lactation) after childbirth.
+    
+    ### 🎯 Importance of the Test
+    Used to investigate unexplained milk discharge from breasts, infertility, and to screen for a non-cancerous pituitary tumor called a **Prolactinoma**.
+    - **Normal Range:** Less than $25$ ng/mL for non-pregnant women; less than $20$ ng/mL for men.
+    
+    ### ⚠️ Symptoms: High vs. Low
+    * **If High (Hyperprolactinemia):** In women, it shuts down ovulation, causing **unexplained breast milk discharge (galactorrhea), skipped periods, and infertility**. In men, it causes **enlarged breasts (gynecomastia), severe erectile dysfunction, and low libido**.
+    * **If Low:** Generally rare and typically only an issue for postpartum women who find themselves unable to produce enough breast milk.
+    """)
+
+# 5. Estradiol (E2)
+with st.expander("🌸 Estradiol (E2) - Code: EST_05"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **Estradiol** is the strongest and most active form of **Estrogen**, the primary female sex hormone. It regulates the menstrual cycle, protects bone health, and maintains female physical characteristics.
+    
+    ### 🎯 Importance of the Test
+    Used to check ovarian function, monitor fertility treatments (like IVF), and assess reasons for abnormal vaginal bleeding or early/delayed puberty.
+    - **Normal Range:** Fluctuates wildly during the menstrual cycle; drops significantly after menopause.
+    
+    ### ⚠️ Symptoms: High vs. Low
+    * **If High:** Known as "Estrogen Dominance." Symptoms include **heavy/painful periods, severe PMS, breast tenderness, bloating, weight gain**, and fibroids.
+    * **If Low:** Indicates low ovarian reserve or menopause. Symptoms include **vaginal dryness, painful intercourse, chronic insomnia, mood swings, and a higher long-term risk of osteoporosis (bone thinning)**.
+    """)
+
+# 6. Progesterone
+with st.expander("🍂 Progesterone - Code: PROG_06"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **Progesterone** is the "pregnancy hormone." It is produced by the ovaries right after ovulation to thicken the lining of the uterus, preparing it to sustain a fertilized egg.
+    
+    ### 🎯 Importance of the Test
+    It is used to confirm whether ovulation actually occurred during a cycle and to monitor the health of a high-risk pregnancy (especially if there is a risk of miscarriage).
+    - **Normal Range:** Low before ovulation, peaks mid-way through the luteal phase (around Day 21 of a 28-day cycle).
+    
+    ### ⚠️ Symptoms: High vs. Low
+    * **If High:** High levels are completely normal during pregnancy. Outside of pregnancy, abnormally elevated levels can cause **fatigue, severe bloating, breast swelling, and moodiness**.
+    * **If Low:** Leads to a failure to maintain the uterine lining. Symptoms include **spotting before periods, irregular cycles, frequent early miscarriages, and difficulty maintaining a pregnancy**.
+    """)
+
+# 7. Morning Cortisol
+with st.expander("☀️ Morning Cortisol (The Stress Hormone) - Code: CORT_07"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **Cortisol** is a steroid hormone produced by the adrenal glands (sitting on top of your kidneys). It is known as the **"stress hormone"** because it regulates the body's fight-or-flight response, blood sugar, and blood pressure.
+    
+    ### 🎯 Importance of the Test
+    Cortisol levels follow a strict daily clock (circadian rhythm)—they are highest in the morning (around 8 AM) and lowest at midnight. A morning blood draw screens for **Cushing’s Syndrome** (too much cortisol) or **Addison’s Disease** (adrenal insufficiency).
+    - **Normal Morning Range:** Typically $5 - 23$ µg/dL (micrograms per deciliter).
+    
+    ### ⚠️ Symptoms: High vs. Low
+    * **If High (Cushing's style):** Causes fat redistribution and tissue breakdown. Symptoms include a **round "moon face," a fatty hump between the shoulders (buffalo hump), rapid weight gain in the abdomen with purple stretch marks (striae)**, high blood pressure, and fragile skin.
+    * **If Low (Addison's style):** Your body cannot handle stress or maintain blood pressure. Symptoms include **severe chronic fatigue, muscle weakness, unexplained weight loss, dark patches on the skin (hyperpigmentation)**, and dangerously low blood pressure causing dizziness upon standing.
+    """)
+
+st.info("💡 **Note:** Reproductive hormones (FSH, LH, Estradiol, Progesterone) fluctuate constantly based on the day of a woman's menstrual cycle. For data accuracy, it is highly recommended to record the exact day of the cycle when the blood sample was collected (e.g., Day 3 for FSH/LH, Day 21 for Progesterone). Morning Cortisol must strictly be collected between 7:00 AM and 9:00 AM.")
 
 #-----
 #-------
@@ -1917,6 +2356,86 @@ if hiv == "Positive":
 
 elif hiv == "Negative":
     st.success("🦠 HIV Screening : Negative")
+# =====================================================
+
+
+st.header("🩺 Overall Infection Summary")
+
+positive_tests = []
+
+if dengue_ns1 == "Positive":
+    positive_tests.append("Dengue NS1")
+
+if dengue_igm == "Positive":
+    positive_tests.append("Dengue IgM")
+
+if dengue_igg == "Positive":
+    positive_tests.append("Dengue IgG")
+
+if malaria == "Positive":
+    positive_tests.append("Malaria Antigen")
+
+if typhoid == "Positive":
+    positive_tests.append("Typhoid")
+
+if hbsag == "Positive":
+    positive_tests.append("HBsAg")
+
+if anti_hcv == "Positive":
+    positive_tests.append("Anti-HCV")
+
+if hiv == "Positive":
+    positive_tests.append("HIV Screening")
+
+if len(positive_tests) == 0:
+
+    st.success("🟢 No Positive Infection Screening Tests Entered.")
+
+    st.write("""
+• Continue maintaining good hygiene.
+
+• Drink safe water.
+
+• Eat hygienic food.
+
+• Complete recommended vaccinations.
+
+• Consult your healthcare provider if symptoms develop despite negative screening tests.
+""")
+
+else:
+
+    st.warning("🟡 Positive Tests Detected")
+
+    st.write("Positive Results:")
+
+    for test in positive_tests:
+        st.write(f"• {test}")
+
+    st.info("""
+Positive screening tests do not always confirm a diagnosis.
+
+Further clinical evaluation, confirmatory laboratory tests and medical consultation are recommended before making treatment decisions.
+""")
+
+# =====================================================
+# MEDICAL DISCLAIMER
+# =====================================================
+
+st.divider()
+
+st.warning("""
+⚠️ Medical Disclaimer
+
+This Infection Profile provides educational interpretation only.
+
+It is NOT intended to diagnose or rule out any infectious disease.
+
+Always consult a qualified healthcare professional for confirmation, diagnosis and treatment decisions.
+""")
+#------------------
+st.divider()
+
 #-------------------
 st.subheader("🧬 Tumor Marker Analysis")
 
@@ -2023,189 +2542,12 @@ if cortisol > 0:
     else:
         st.warning(f"Cortisol: {cortisol} µg/dL → Outside Common Morning Reference Range")
         st.info("Cortisol levels vary with time of day and clinical conditions.")
-
-#----------
-
-#---------------
-
-
-
-#-----------------------#
-
-  #-------------
-st.divider()
-
-
-
-#----------
-
-
-#-------------------
-
-
-#-------------------
-
-
-#-------------------
-
-
-#-----------------
-# =====================================================
-# IMPORTANCE OF INFECTION TESTS
-# =====================================================
-
-st.divider()
-
-with st.expander("🦠 Importance of Infection Profile"):
-
-    st.write("""
-The Infection Profile includes commonly used screening tests for infectious diseases.
-
-• Dengue NS1 is useful during the early stage of dengue fever.
-
-• Dengue IgM usually indicates a recent dengue infection.
-
-• Dengue IgG may indicate previous exposure or a secondary infection.
-
-• Malaria Antigen helps rapidly detect malaria parasites.
-
-• Typhoid tests may support the diagnosis of typhoid fever when interpreted together with symptoms and other investigations.
-
-• HBsAg is a screening test for Hepatitis B infection.
-
-• Anti-HCV is a screening test for Hepatitis C infection.
-
-• HIV screening tests help detect possible HIV infection but reactive results require confirmatory testing.
-
-These tests should always be interpreted together with the patient's symptoms, history, physical examination and additional laboratory investigations.
-""")
-
-# =====================================================
-# OVERALL INFECTION SUMMARY
-# =====================================================
-
-st.divider()
-
-st.header("🩺 Overall Infection Summary")
-
-positive_tests = []
-
-if dengue_ns1 == "Positive":
-    positive_tests.append("Dengue NS1")
-
-if dengue_igm == "Positive":
-    positive_tests.append("Dengue IgM")
-
-if dengue_igg == "Positive":
-    positive_tests.append("Dengue IgG")
-
-if malaria == "Positive":
-    positive_tests.append("Malaria Antigen")
-
-if typhoid == "Positive":
-    positive_tests.append("Typhoid")
-
-if hbsag == "Positive":
-    positive_tests.append("HBsAg")
-
-if anti_hcv == "Positive":
-    positive_tests.append("Anti-HCV")
-
-if hiv == "Positive":
-    positive_tests.append("HIV Screening")
-
-if len(positive_tests) == 0:
-
-    st.success("🟢 No Positive Infection Screening Tests Entered.")
-
-    st.write("""
-• Continue maintaining good hygiene.
-
-• Drink safe water.
-
-• Eat hygienic food.
-
-• Complete recommended vaccinations.
-
-• Consult your healthcare provider if symptoms develop despite negative screening tests.
-""")
-
-else:
-
-    st.warning("🟡 Positive Tests Detected")
-
-    st.write("Positive Results:")
-
-    for test in positive_tests:
-        st.write(f"• {test}")
-
-    st.info("""
-Positive screening tests do not always confirm a diagnosis.
-
-Further clinical evaluation, confirmatory laboratory tests and medical consultation are recommended before making treatment decisions.
-""")
-
-# =====================================================
-# MEDICAL DISCLAIMER
-# =====================================================
-
 st.divider()
 
 st.warning("""
-⚠️ Medical Disclaimer
-
-This Infection Profile provides educational interpretation only.
-
-It is NOT intended to diagnose or rule out any infectious disease.
-
-Always consult a qualified healthcare professional for confirmation, diagnosis and treatment decisions.
-""")
-#------------------
-st.divider()
-
-with st.expander("🧬 Importance of Tumor Markers"):
-
-    st.write("""
-Tumor markers are substances that may be measured in blood and can assist healthcare professionals during the evaluation or monitoring of certain diseases.
-
-• PSA is commonly used in the assessment of prostate disorders.
-
-• CEA may be used during follow-up of some gastrointestinal and other cancers.
-
-• CA-125 is often used during the evaluation and monitoring of certain ovarian conditions.
-
-• CA 19-9 may be used alongside other investigations for pancreatic and biliary diseases.
-
-• AFP may assist in the evaluation of certain liver diseases and specific tumors.
-
-Tumor marker results alone cannot diagnose or exclude cancer. They must always be interpreted together with symptoms, physical examination, imaging studies and, when appropriate, biopsy findings by a qualified healthcare professional.
-""")
-
-#---
-st.divider()
-
-with st.expander("🧬 Importance of Hormone Profile"):
-
-    st.write("""
-Hormone tests help assess the function of endocrine glands and reproductive health.
-
-• Testosterone supports muscle mass, bone health and reproductive function.
-
-• FSH and LH regulate reproductive hormone production and fertility.
-
-• Prolactin plays a role in lactation and may be elevated in pituitary disorders.
-
-• Estradiol is an important estrogen hormone involved in reproductive health.
-
-• Progesterone is essential for ovulation, menstrual regulation and pregnancy.
-
-• Cortisol is produced by the adrenal glands and helps regulate metabolism, stress response and immune function.
-
-Reference ranges vary according to age, sex, pregnancy status and, in women, the menstrual cycle. Hormone test results should always be interpreted by a qualified healthcare professional in the appropriate clinical context.
-""")
-#--------
-
-#-------------
+⚠️ This tool is for educational purposes only and does not replace
+professional medical advice or diagnosis.
+""") 
 
 st.warning("""
 ⚠️ This tool is for educational purposes only and does not replace
