@@ -41,6 +41,21 @@ hba1c = st.number_input(
     step=0.1
 )
 st.divider()
+with st.expander("🩸 Importance of Diabetes Profile"):
+
+    st.write("""
+The Diabetes Profile helps evaluate blood glucose control and supports the screening and monitoring of diabetes mellitus.
+
+• Fasting Blood Sugar measures blood glucose after at least 8 hours without food.
+
+• Post Meal Blood Sugar assesses how the body handles glucose approximately 2 hours after eating.
+
+• Random Blood Sugar provides a glucose measurement at any time and may support evaluation when symptoms are present.
+
+• HbA1c reflects the average blood glucose level over the previous 2–3 months and is widely used for long-term monitoring.
+
+Results should always be interpreted together with symptoms, medical history and advice from a qualified healthcare professional.
+""")
 with st.expander("🅰️ Why is Fasting Blood Sugar Important?"):
 
     st.write("""
@@ -96,6 +111,21 @@ rbc = st.number_input("RBC (million/µL)", min_value=0.0, value=0.0, step=0.1)
 platelet = st.number_input("Platelet (/µL)", min_value=0, value=0)
 esr = st.number_input("ESR (mm/hr)", min_value=0, value=0)
 
+#-------
+
+with st.expander("📚 About CBC Tests"):
+    st.write("""
+**Hemoglobin (Hb):** Carries oxygen in the blood.
+
+**WBC:** Helps fight infections.
+
+**RBC:** Carries oxygen from the lungs to body tissues.
+
+**Platelets:** Help blood clot and prevent excessive bleeding.
+
+**ESR:** A general marker of inflammation; it is not specific for any one disease.
+""")
+  #--------
 with st.expander("🔴 Hemoglobin (Hb)"):
     st.write("""
     **Hemoglobin** measures the protein in your red blood cells that carries oxygen to your body's organs and tissues.
@@ -151,6 +181,21 @@ triglyceride = st.number_input(
     min_value=0,
     value=0
 )
+with st.expander("❤️ Importance of Lipid Profile"):
+
+    st.write("""
+The Lipid Profile measures fats in your blood that are associated with cardiovascular health.
+
+• Total Cholesterol gives an overall picture of blood cholesterol.
+
+• HDL ("good cholesterol") helps remove excess cholesterol from the bloodstream.
+
+• LDL ("bad cholesterol") can contribute to plaque buildup in arteries when elevated.
+
+• Triglycerides are a type of fat that may increase cardiovascular risk when persistently high.
+
+Maintaining a balanced diet, engaging in regular physical activity, avoiding tobacco, and following your healthcare provider's advice can help support healthy lipid levels.
+""")
 # 1. Total Cholesterol
 with st.expander("📊 Total Cholesterol (Code: CHOL_01)"):
     st.markdown("""
@@ -250,6 +295,97 @@ alp = st.number_input(
     value=0.0,
     step=1.0
 )
+with st.expander("🧪 Importance of Liver Function Test"):
+
+    st.write("""
+Liver Function Tests (LFTs) help assess how well your liver is working.
+
+• ALT (SGPT) and AST (SGOT) are enzymes that may increase when liver cells are damaged.
+
+• Bilirubin is produced when red blood cells break down. High levels may cause jaundice.
+
+• Albumin is a protein made by the liver and reflects liver function as well as nutritional status.
+
+• Alkaline Phosphatase (ALP) may increase in certain liver or bone conditions.
+
+These tests should always be interpreted together with your symptoms, medical history and your healthcare provider's assessment.
+""")
+
+ #--------------
+# 1. ALT / SGPT
+with st.expander("🔸 ALT / SGPT (Code: ALT_01)"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **Alanine Aminotransferase (ALT)**, formerly known as **SGPT**, is an enzyme found primarily in the liver. It plays a crucial role in converting food into energy.
+    
+    ### 🎯 Importance of the Test
+    ALT is the most specific biomarker for liver injury. When liver cells are damaged or inflamed, ALT leaks into the bloodstream, making it an excellent early indicator of liver problems.
+    - **Normal Range:** Typically $7 - 56$ U/L (units per liter)
+    
+    ### ⚠️ Symptoms: High vs. Low
+    * **If High:** Indicates liver inflammation or damage (e.g., Fatty Liver, Hepatitis, or alcohol damage). Symptoms include **jaundice** (yellowing of skin/eyes), **dark urine**, **fatigue**, and **nausea/vomiting**.
+    * **If Low:** Low ALT levels are normal and expected, signifying a healthy, undamaged liver.
+    """)
+
+# 2. AST / SGOT
+with st.expander("🔸 AST / SGOT (Code: AST_02)"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **Aspartate Aminotransferase (AST)**, formerly known as **SGOT**, is an enzyme found in the liver, but it is also present in high amounts in the heart, muscles, and kidneys.
+    
+    ### 🎯 Importance of the Test
+    While not as specific to the liver as ALT, comparing the ratio of AST to ALT helps doctors pinpoint the exact cause of liver disease (e.g., alcoholic liver disease often shows higher AST than ALT).
+    - **Normal Range:** Typically $10 - 40$ U/L
+    
+    ### ⚠️ Symptoms: High vs. Low
+    * **If High:** Suggests liver damage, muscle injury, or heart issues. Symptoms closely mirror high ALT (**abdominal pain**, **jaundice**, **fatigue**), but if caused by muscle/heart damage, it might be accompanied by muscle soreness or chest pain.
+    * **If Low:** Perfectly normal and indicates no active cell damage in these organs.
+    """)
+
+# 3. Total Bilirubin
+with st.expander("🟡 Total Bilirubin (Code: BIL_03)"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **Bilirubin** is a yellowish pigment formed during the normal breakdown of old red blood cells. The liver filters bilirubin from the blood and excretes it through bile.
+    
+    ### 🎯 Importance of the Test
+    This test measures how well the liver is processing and excreting waste. High levels indicate either a liver disease, a blockage in the bile ducts, or rapid destruction of red blood cells (hemolysis).
+    - **Normal Range:** $0.2 - 1.2$ mg/dL
+    
+    ### ⚠️ Symptoms: High vs. Low
+    * **If High (>2.0 mg/dL):** Leads to **Jaundice**. Visible symptoms include **distinct yellowing of the eyes and skin**, **intense skin itching (pruritus)**, **pale/clay-colored stools**, and **dark tea-colored urine**.
+    * **If Low:** Generally not a medical concern and has no clinical symptoms.
+    """)
+
+# 4. Albumin
+with st.expander("⚪ Albumin (Code: ALB_04)"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **Albumin** is the main protein produced by your liver. It keeps fluid from leaking out of your blood vessels into surrounding tissues and carries hormones, vitamins, and enzymes throughout the body.
+    
+    ### 🎯 Importance of the Test
+    Albumin reflects the liver's synthetic capacity (how well it creates essential proteins) and your overall nutritional status.
+    - **Normal Range:** $3.5 - 5.0$ g/dL
+    
+    ### ⚠️ Symptoms: High vs. Low
+    * **If High:** Typically caused by severe dehydration. Symptoms include **extreme thirst**, **dry mouth**, and **lightheadedness**.
+    * **If Low:** Indicates chronic liver disease (like Cirrhosis), kidney disease, or malnutrition. Symptoms include **edema** (swelling in the legs, ankles, or feet), **ascites** (fluid buildup in the abdomen), and **muscle weakness**.
+    """)
+
+# 5. Alkaline Phosphatase (ALP)
+with st.expander("🔹 Alkaline Phosphatase / ALP (Code: ALP_05)"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **ALP** is an enzyme related to the bile ducts in the liver, but it is also heavily found in bones.
+    
+    ### 🎯 Importance of the Test
+    It is primarily used to detect diseases of the liver or bone. In the liver, it specifically flags **cholestasis**—a condition where bile flow is slowed or blocked.
+    - **Normal Range:** $44 - 147$ U/L (Can be higher in growing children and pregnant individuals)
+    
+    ### ⚠️ Symptoms: High vs. Low
+    * **If High:** Indicates blocked bile ducts, gallstones, or bone disorders. Symptoms include **severe upper right abdominal pain**, **jaundice**, **nausea**, or **bone pain/frequent fractures** if it's a bone-related issue.
+    * **If Low:** Rare, but can be a sign of severe malnutrition, zinc deficiency, or a rare genetic condition called hypophosphatasia. Symptoms relate to bone weakness or slow healing.
+    """)
 #-----------KFT--------
 st.divider()
 
@@ -1442,80 +1578,13 @@ if cortisol > 0:
 
 #---------------
 
-st.divider()
+
 
 #-----------------------#
-st.divider()
 
-with st.expander("🩸 Importance of Diabetes Profile"):
-
-    st.write("""
-The Diabetes Profile helps evaluate blood glucose control and supports the screening and monitoring of diabetes mellitus.
-
-• Fasting Blood Sugar measures blood glucose after at least 8 hours without food.
-
-• Post Meal Blood Sugar assesses how the body handles glucose approximately 2 hours after eating.
-
-• Random Blood Sugar provides a glucose measurement at any time and may support evaluation when symptoms are present.
-
-• HbA1c reflects the average blood glucose level over the previous 2–3 months and is widely used for long-term monitoring.
-
-Results should always be interpreted together with symptoms, medical history and advice from a qualified healthcare professional.
-""")
-
-#-------
-
-with st.expander("📚 About CBC Tests"):
-    st.write("""
-**Hemoglobin (Hb):** Carries oxygen in the blood.
-
-**WBC:** Helps fight infections.
-
-**RBC:** Carries oxygen from the lungs to body tissues.
-
-**Platelets:** Help blood clot and prevent excessive bleeding.
-
-**ESR:** A general marker of inflammation; it is not specific for any one disease.
-""")
-  #--------
-st.divider()
-
-with st.expander("❤️ Importance of Lipid Profile"):
-
-    st.write("""
-The Lipid Profile measures fats in your blood that are associated with cardiovascular health.
-
-• Total Cholesterol gives an overall picture of blood cholesterol.
-
-• HDL ("good cholesterol") helps remove excess cholesterol from the bloodstream.
-
-• LDL ("bad cholesterol") can contribute to plaque buildup in arteries when elevated.
-
-• Triglycerides are a type of fat that may increase cardiovascular risk when persistently high.
-
-Maintaining a balanced diet, engaging in regular physical activity, avoiding tobacco, and following your healthcare provider's advice can help support healthy lipid levels.
-""")
   #-------------
 st.divider()
 
-with st.expander("🧪 Importance of Liver Function Test"):
-
-    st.write("""
-Liver Function Tests (LFTs) help assess how well your liver is working.
-
-• ALT (SGPT) and AST (SGOT) are enzymes that may increase when liver cells are damaged.
-
-• Bilirubin is produced when red blood cells break down. High levels may cause jaundice.
-
-• Albumin is a protein made by the liver and reflects liver function as well as nutritional status.
-
-• Alkaline Phosphatase (ALP) may increase in certain liver or bone conditions.
-
-These tests should always be interpreted together with your symptoms, medical history and your healthcare provider's assessment.
-""")
-
- #--------------
-st.divider()
 
 with st.expander("🩺 Importance of Kidney Function Test"):
 
