@@ -11,7 +11,7 @@ st.info("Enter available blood test values. Leave the others as 0.")
 #-------------------
 st.divider()
 
-st.header("🩸 Diabetes Profile")
+st.header("🍯 Diabetes Profile")
 
 fasting_bs = st.number_input(
     "Fasting Blood Sugar (mg/dL)",
@@ -96,28 +96,28 @@ rbc = st.number_input("RBC (million/µL)", min_value=0.0, value=0.0, step=0.1)
 platelet = st.number_input("Platelet (/µL)", min_value=0, value=0)
 esr = st.number_input("ESR (mm/hr)", min_value=0, value=0)
 
-with st.expander("🔴 Hemoglobin (Hb) - Code: HB_01"):
+with st.expander("🔴 Hemoglobin (Hb)"):
     st.write("""
     **Hemoglobin** measures the protein in your red blood cells that carries oxygen to your body's organs and tissues.
     - **Normal Range:** 12.1 - 17.2 g/dL (Varies by gender)
     - **Significance:** Low levels indicate anemia, leading to fatigue and weakness.
     """)
 
-with st.expander("⚪ White Blood Cells (WBC) - Code: WBC_02"):
+with st.expander("⚪ White Blood Cells (WBC)"):
     st.write("""
     **WBC** count measures the cells that fight infection in your body.
     - **Normal Range:** 4,500 - 11,000 cells/µL
     - **Significance:** High counts often indicate an ongoing infection or inflammation.
     """)
 
-with st.expander("💉 Platelets - Code: PLT_04"):
+with st.expander("💉 Platelets"):
     st.write("""
     **Platelets** are cell fragments that help your blood clot to stop bleeding.
     - **Normal Range:** 150,000 - 450,000 /µL
     - **Significance:** Low platelets can lead to excessive bruising or bleeding (commonly monitored in Dengue).
     """)
 
-with st.expander("⏳ ESR (Erythrocyte Sedimentation Rate) - Code: ESR_05"):
+with st.expander("⏳ ESR (Erythrocyte Sedimentation Rate)"):
     st.write("""
     **ESR** is a type of blood test that measures how quickly erythrocytes (red blood cells) settle at the bottom of a test tube.
     - **Normal Range:** < 15-20 mm/hr
@@ -151,6 +151,66 @@ triglyceride = st.number_input(
     min_value=0,
     value=0
 )
+# 1. Total Cholesterol
+with st.expander("📊 Total Cholesterol (Code: CHOL_01)"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **Total Cholesterol** is the overall amount of cholesterol found in your blood. It includes both "good" (HDL) and "bad" (LDL) cholesterol.
+    
+    ### 🎯 Importance of the Test
+    It serves as a baseline screening tool to assess your overall risk of cardiovascular (heart) disease. Keeping this in a desirable range helps prevent plaque buildup in arteries.
+    - **Normal/Desirable Range:** Less than 200 mg/dL
+    
+    ### ⚠️ Symptoms: High vs. Low
+    * **If High (>240 mg/dL):** High cholesterol itself is a **"silent killer"** and typically has **no direct symptoms** until it causes a medical emergency like a heart attack or stroke. In rare, severe cases, yellowish fatty deposits called *xanthomas* may appear on the skin or tendons.
+    * **If Low (<120 mg/dL):** Very low cholesterol (hypocholesterolemia) is rare but can be linked to malnutrition, hyperthyroidism, or liver disease. Symptoms usually relate to the underlying cause (e.g., chronic fatigue, unintended weight loss).
+    """)
+
+# 2. HDL Cholesterol
+with st.expander("🟢 HDL Cholesterol (The 'Good' Cholesterol) - Code: HDL_02"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **HDL (High-Density Lipoprotein)** is known as the **"Good" cholesterol**. It acts as a scavenger, absorbing excess cholesterol in your blood and carrying it back to the liver, where it is flushed from the body.
+    
+    ### 🎯 Importance of the Test
+    Higher HDL levels are protective. A high HDL level lowers your risk for heart disease and stroke, while a low level increases the risk.
+    - **Optimal Range:** 60 mg/dL or higher (Below 40 mg/dL for men and 50 mg/dL for women is considered a major risk factor).
+    
+    ### ⚠️ Symptoms: High vs. Low
+    * **If High:** Generally has no symptoms and is highly beneficial. However, extremely abnormally high levels (due to genetic mutations) don't offer extra protection and carry no specific symptoms.
+    * **If Low:** No immediate physical symptoms, but over time, it silently accelerates artery clogging (atherosclerosis), which can eventually lead to chest pain (angina) or shortness of breath during exertion.
+    """)
+
+# 3. LDL Cholesterol
+with st.expander("🔴 LDL Cholesterol (The 'Bad' Cholesterol) - Code: LDL_03"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **LDL (Low-Density Lipoprotein)** is known as the **"Bad" cholesterol**. It carries cholesterol from your liver to the rest of your body. If there is too much LDL, it builds up in the walls of your arteries.
+    
+    ### 🎯 Importance of the Test
+    This is the most critical number to watch for heart disease risk. High LDL leads to **atherosclerosis** (hardening and narrowing of arteries), which directly causes heart attacks.
+    - **Optimal Range:** Less than 100 mg/dL
+    
+    ### ⚠️ Symptoms: High vs. Low
+    * **If High:** There are **no direct symptoms**. However, if it causes significant arterial blockage, you might experience chest pain (angina), leg pain when walking (Peripheral Artery Disease), or sudden numbness/weakness if brain arteries are affected.
+    * **If Low:** Very low LDL is uncommon but can happen with severe illness or genetic traits. It rarely causes symptoms but can sometimes be associated with a higher risk of hemorrhagic stroke or mood disorders in rare clinical contexts.
+    """)
+
+# 4. Triglycerides
+with st.expander("🟡 Triglycerides (Code: TRIG_04)"):
+    st.markdown("""
+    ### 🩸 What is it?
+    **Triglycerides** are the most common type of fat (lipids) in your body. They come from extra calories your body doesn't need right away, which are converted and stored in fat cells.
+    
+    ### 🎯 Importance of the Test
+    High triglycerides combined with high LDL or low HDL can increase the risk of fatty liver disease and heart disease. 
+    - **Normal Range:** Less than 150 mg/dL
+    
+    ### ⚠️ Symptoms: High vs. Low
+    * **If High (>150 mg/dL, especially >500 mg/dL):** Mildly high levels have no symptoms. However, **extremely high levels (above 500 mg/dL)** can cause severe acute **pancreatitis** (inflammation of the pancreas). Symptoms include sudden, severe abdominal pain radiating to the back, nausea, and vomiting.
+    * **If Low (<50 mg/dL):** Low triglycerides are generally healthy and have no symptoms, usually resulting from a low-fat diet, regular exercise, or an overactive thyroid.
+    """)
+
 #-------------------
 st.divider()
 
