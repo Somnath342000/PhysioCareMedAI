@@ -984,3 +984,198 @@ Final interpretation should always consider:
 • Physician's expert opinion
 """)
   #---------
+# ===========================
+# NCV REPORT ANALYSIS
+# ===========================
+
+st.divider()
+
+if st.button("🔍 Analyze NCV Report"):
+
+    st.header("🧠 NCV Report Analysis")
+
+    # ------------------------
+    # DISTAL LATENCY
+    # ------------------------
+
+    if distal_latency > 0:
+
+        if distal_latency <= 4.2:
+            st.success(f"✅ Distal Latency : {distal_latency} ms → Normal")
+
+        elif distal_latency <= 5.5:
+            st.warning(f"🟡 Distal Latency : {distal_latency} ms → Mildly Prolonged")
+
+        else:
+            st.error(f"🔴 Distal Latency : {distal_latency} ms → Significantly Prolonged")
+
+
+    # ------------------------
+    # CMAP
+    # ------------------------
+
+    if cmap > 0:
+
+        if cmap >= 5:
+            st.success(f"✅ CMAP Amplitude : {cmap} mV → Normal")
+
+        elif cmap >= 2:
+            st.warning(f"🟡 CMAP Amplitude : {cmap} mV → Mildly Reduced")
+
+        else:
+            st.error(f"🔴 CMAP Amplitude : {cmap} mV → Severely Reduced")
+
+
+    # ------------------------
+    # VELOCITY
+    # ------------------------
+
+    if velocity > 0:
+
+        if velocity >= 50:
+            st.success(f"✅ Motor Conduction Velocity : {velocity} m/s → Normal")
+
+        elif velocity >= 40:
+            st.warning(f"🟡 Motor Conduction Velocity : {velocity} m/s → Mild Slowing")
+
+        else:
+            st.error(f"🔴 Motor Conduction Velocity : {velocity} m/s → Significant Slowing")
+
+
+    # ------------------------
+    # SENSORY LATENCY
+    # ------------------------
+
+    if sensory_latency > 0:
+
+        if sensory_latency <= 3.5:
+            st.success(f"✅ Sensory Latency : {sensory_latency} ms → Normal")
+
+        elif sensory_latency <= 4.5:
+            st.warning(f"🟡 Sensory Latency : {sensory_latency} ms → Mildly Prolonged")
+
+        else:
+            st.error(f"🔴 Sensory Latency : {sensory_latency} ms → Prolonged")
+
+
+    # ------------------------
+    # SNAP
+    # ------------------------
+
+    if snap_amplitude > 0:
+
+        if snap_amplitude >= 10:
+            st.success(f"✅ SNAP Amplitude : {snap_amplitude} µV → Normal")
+
+        elif snap_amplitude >= 5:
+            st.warning(f"🟡 SNAP Amplitude : {snap_amplitude} µV → Mildly Reduced")
+
+        else:
+            st.error(f"🔴 SNAP Amplitude : {snap_amplitude} µV → Severely Reduced")
+
+
+    # ------------------------
+    # SENSORY VELOCITY
+    # ------------------------
+
+    if sensory_velocity > 0:
+
+        if sensory_velocity >= 50:
+            st.success(f"✅ Sensory Conduction Velocity : {sensory_velocity} m/s → Normal")
+
+        elif sensory_velocity >= 40:
+            st.warning(f"🟡 Sensory Conduction Velocity : {sensory_velocity} m/s → Mild Slowing")
+
+        else:
+            st.error(f"🔴 Sensory Conduction Velocity : {sensory_velocity} m/s → Significant Slowing")
+
+
+    # ------------------------
+    # F-WAVE
+    # ------------------------
+
+    if f_wave_status == "Normal":
+        st.success("✅ F-wave → Normal")
+
+    elif f_wave_status == "Prolonged":
+        st.warning("🟡 F-wave → Prolonged")
+
+    elif f_wave_status == "Absent":
+        st.error("🔴 F-wave → Absent")
+
+
+    # ------------------------
+    # H-REFLEX
+    # ------------------------
+
+    if h_status == "Normal":
+        st.success("✅ H-reflex → Normal")
+
+    elif h_status == "Delayed":
+        st.warning("🟡 H-reflex → Delayed")
+
+    elif h_status == "Absent":
+        st.error("🔴 H-reflex → Absent")
+
+    # ===========================
+    # OVERALL SUMMARY
+    # ===========================
+
+    st.divider()
+
+    st.subheader("🩺 Overall NCV Summary")
+
+    severe = False
+    mild = False
+
+    if distal_latency > 5.5:
+        severe = True
+    elif distal_latency > 4.2:
+        mild = True
+
+    if cmap < 2:
+        severe = True
+    elif cmap < 5:
+        mild = True
+
+    if velocity < 40:
+        severe = True
+    elif velocity < 50:
+        mild = True
+
+    if sensory_latency > 4.5:
+        severe = True
+    elif sensory_latency > 3.5:
+        mild = True
+
+    if snap_amplitude < 5:
+        severe = True
+    elif snap_amplitude < 10:
+        mild = True
+
+    if sensory_velocity < 40:
+        severe = True
+    elif sensory_velocity < 50:
+        mild = True
+
+    if f_wave_status == "Absent":
+        severe = True
+    elif f_wave_status == "Prolonged":
+        mild = True
+
+    if h_status == "Absent":
+        severe = True
+    elif h_status == "Delayed":
+        mild = True
+
+    if severe:
+        st.error("🔴 Overall Educational Interpretation: Multiple significant NCV abnormalities are present.")
+        st.info("Educational possibilities include demyelinating neuropathy, axonal neuropathy, entrapment neuropathy, radiculopathy, or generalized peripheral neuropathy. Correlate with clinical findings and physician interpretation.")
+
+    elif mild:
+        st.warning("🟡 Overall Educational Interpretation: Mild NCV abnormalities are present.")
+        st.info("These findings may represent early neuropathy, mild entrapment neuropathy, or borderline conduction abnormalities. Clinical correlation is recommended.")
+
+    else:
+        st.success("🟢 Overall Educational Interpretation: The entered NCV values are within the common reference ranges.")
+        st.info("Normal NCV does not completely exclude neurological disorders. Interpretation should always consider symptoms, examination, and when appropriate, Needle EMG findings.")
