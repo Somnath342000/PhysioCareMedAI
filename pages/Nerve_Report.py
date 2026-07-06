@@ -1179,3 +1179,1135 @@ if st.button("🔍 Analyze NCV Report"):
     else:
         st.success("🟢 Overall Educational Interpretation: The entered NCV values are within the common reference ranges.")
         st.info("Normal NCV does not completely exclude neurological disorders. Interpretation should always consider symptoms, examination, and when appropriate, Needle EMG findings.")
+    #-------
+import streamlit as st
+
+st.set_page_config(
+    page_title="EMG Assistant",
+    page_icon="💪",
+    layout="wide"
+)
+
+st.title("💪 Electromyography (EMG) Assistant")
+
+st.warning(
+    "⚠️ Educational Tool Only. This assistant does not diagnose diseases. "
+    "Interpretation should always be performed by a qualified Neurologist, "
+    "Physiatrist or Electrodiagnostic Physician."
+)
+
+st.divider()
+
+st.header("💉 Needle EMG Examination")
+
+muscle = st.selectbox(
+    "Select Muscle",
+    [
+        "Abductor Pollicis Brevis (APB)",
+        "First Dorsal Interosseous (FDI)",
+        "Abductor Digiti Minimi (ADM)",
+        "Biceps Brachii",
+        "Triceps",
+        "Deltoid",
+        "Pronator Teres",
+        "Extensor Digitorum",
+        "Tibialis Anterior",
+        "Peroneus Longus",
+        "Gastrocnemius",
+        "Vastus Medialis",
+        "Rectus Femoris",
+        "Quadriceps",
+        "Hamstrings",
+        "Paraspinal Muscles",
+        "Other"
+    ]
+)
+
+st.divider()
+
+st.header("📋 Needle EMG Parameters")
+
+col1, col2 = st.columns(2)
+
+with col1:
+
+    insertional = st.selectbox(
+        "Insertional Activity",
+        [
+            "Normal",
+            "Increased",
+            "Decreased"
+        ]
+    )
+
+    fibrillation = st.selectbox(
+        "Fibrillation Potentials",
+        [
+            "Absent",
+            "1+",
+            "2+",
+            "3+",
+            "4+"
+        ]
+    )
+
+    positive_sharp = st.selectbox(
+        "Positive Sharp Waves",
+        [
+            "Absent",
+            "1+",
+            "2+",
+            "3+",
+            "4+"
+        ]
+    )
+
+with col2:
+
+    fasciculation = st.selectbox(
+        "Fasciculation Potentials",
+        [
+            "Absent",
+            "Present"
+        ]
+    )
+
+    crd = st.selectbox(
+        "Complex Repetitive Discharges",
+        [
+            "Absent",
+            "Present"
+        ]
+    )
+
+    myotonic = st.selectbox(
+        "Myotonic Discharges",
+        [
+            "Absent",
+            "Present"
+        ]
+    )
+
+st.divider()
+
+st.header("📈 Motor Unit Action Potential (MUAP)")
+
+col3, col4 = st.columns(2)
+
+with col3:
+
+    muap_amplitude = st.selectbox(
+        "MUAP Amplitude",
+        [
+            "Normal",
+            "Small",
+            "Large"
+        ]
+    )
+
+    muap_duration = st.selectbox(
+        "MUAP Duration",
+        [
+            "Normal",
+            "Short",
+            "Long"
+        ]
+    )
+
+with col4:
+
+    polyphasic = st.selectbox(
+        "Polyphasic Potentials",
+        [
+            "Absent",
+            "Present"
+        ]
+    )
+
+    recruitment = st.selectbox(
+        "Recruitment Pattern",
+        [
+            "Normal",
+            "Reduced",
+            "Early",
+            "Discrete",
+            "Absent"
+        ]
+    )
+
+st.divider()
+
+st.header("📊 Interference Pattern")
+
+interference = st.selectbox(
+    "Interference Pattern",
+    [
+        "Normal",
+        "Reduced",
+        "Incomplete",
+        "Full"
+    ]
+)
+
+st.divider()
+
+st.info("""
+💡 **Educational Note**
+
+Needle EMG evaluates:
+
+• Muscle membrane stability
+
+• Active denervation
+
+• Chronic reinnervation
+
+• Myopathic disorders
+
+• Neurogenic disorders
+
+Interpretation should always be correlated with:
+
+• Clinical examination
+
+• Nerve Conduction Study (NCV)
+
+• Medical history
+
+• Imaging and laboratory investigations when appropriate.
+""")
+#------
+st.divider()
+
+st.header("📚 Needle EMG Parameter Information")
+
+# ---------------------------------------------------------
+# INSERTIONAL ACTIVITY
+# ---------------------------------------------------------
+
+with st.expander("🅰️ Insertional Activity - Code: EMG_INS_01"):
+
+    st.markdown("""
+### 💉 What is Insertional Activity?
+
+Insertional activity is the brief electrical activity generated when the EMG needle is inserted into a muscle.
+
+### 🎯 Importance
+
+• Assesses muscle membrane stability
+
+• Detects muscle fiber irritation
+
+• Helps identify denervation
+
+### Normal Finding
+
+Brief activity lasting less than 300 milliseconds.
+
+### If Increased
+
+Possible Educational Associations
+
+• Acute Denervation
+
+• Inflammatory Myopathy
+
+• Muscle Irritation
+
+• Radiculopathy
+
+### If Decreased
+
+Possible Educational Associations
+
+• Fibrosis
+
+• Fatty Muscle Replacement
+
+• Chronic Muscle Disease
+
+### 🩺 Clinical Significance
+
+Abnormal insertional activity often reflects muscle membrane instability.
+
+### 💡 Interpretation Tip
+
+Interpret together with spontaneous activity and MUAP findings.
+""")
+
+# ---------------------------------------------------------
+# FIBRILLATION POTENTIALS
+# ---------------------------------------------------------
+
+with st.expander("🅱️ Fibrillation Potentials - Code: EMG_FIB_02"):
+
+    st.markdown("""
+### 💉 What are Fibrillation Potentials?
+
+Fibrillation potentials are spontaneous discharges from single muscle fibers.
+
+### 🎯 Importance
+
+One of the most important signs of active denervation.
+
+### Normal Finding
+
+Absent
+
+### If Present
+
+Possible Educational Associations
+
+• Peripheral Neuropathy
+
+• Radiculopathy
+
+• Motor Neuron Disease
+
+• Nerve Injury
+
+• Severe Axonal Neuropathy
+
+### Clinical Significance
+
+Indicates active denervation of muscle fibers.
+
+### Grading
+
+1+ = Few
+
+2+ = Mild
+
+3+ = Moderate
+
+4+ = Severe
+
+### 💡 Interpretation Tip
+
+Always correlate with Positive Sharp Waves.
+""")
+
+# ---------------------------------------------------------
+# POSITIVE SHARP WAVES
+# ---------------------------------------------------------
+
+with st.expander("🅲 Positive Sharp Waves - Code: EMG_PSW_03"):
+
+    st.markdown("""
+### 💉 What are Positive Sharp Waves?
+
+Positive Sharp Waves are spontaneous muscle fiber discharges similar to fibrillation potentials.
+
+### 🎯 Importance
+
+Represents muscle denervation.
+
+### Normal Finding
+
+Absent
+
+### If Present
+
+Possible Educational Associations
+
+• Radiculopathy
+
+• Peripheral Nerve Injury
+
+• Motor Neuron Disease
+
+• Chronic Denervation
+
+### Clinical Significance
+
+Suggests unstable muscle membrane due to denervation.
+
+### Grading
+
+1+ = Mild
+
+2+ = Moderate
+
+3+ = Marked
+
+4+ = Severe
+
+### 💡 Interpretation Tip
+
+Interpret together with Fibrillation Potentials.
+""")
+
+# ---------------------------------------------------------
+# FASCICULATION POTENTIALS
+# ---------------------------------------------------------
+
+with st.expander("🅳 Fasciculation Potentials - Code: EMG_FASC_04"):
+
+    st.markdown("""
+### 💉 What are Fasciculation Potentials?
+
+Spontaneous discharges of an entire motor unit.
+
+### 🎯 Importance
+
+May occur in both normal individuals and neurological disorders.
+
+### Normal Finding
+
+Absent
+
+### If Present
+
+Possible Educational Associations
+
+• Benign Fasciculation Syndrome
+
+• Motor Neuron Disease
+
+• Peripheral Neuropathy
+
+• Radiculopathy
+
+### Clinical Significance
+
+Should always be interpreted with other EMG abnormalities.
+
+### 💡 Interpretation Tip
+
+Fasciculations alone are not diagnostic.
+""")
+    #------
+# ---------------------------------------------------------
+# COMPLEX REPETITIVE DISCHARGES (CRD)
+# ---------------------------------------------------------
+
+with st.expander("🅴 Complex Repetitive Discharges (CRD) - Code: EMG_CRD_05"):
+
+    st.markdown("""
+### 💉 What are Complex Repetitive Discharges (CRDs)?
+
+CRDs are repetitive spontaneous muscle discharges generated by groups of muscle fibers.
+
+### 🎯 Importance
+
+• Indicates chronic muscle pathology
+
+• Suggests long-standing denervation or myopathy
+
+### Normal Finding
+
+Absent
+
+### If Present
+
+Possible Educational Associations
+
+• Chronic Neuropathy
+
+• Chronic Radiculopathy
+
+• Myopathy
+
+• Previous Nerve Injury
+
+### 🩺 Clinical Significance
+
+Usually represents chronic rather than acute disease.
+
+### 💡 Interpretation Tip
+
+Interpret with MUAP duration and recruitment pattern.
+""")
+
+# ---------------------------------------------------------
+# MYOTONIC DISCHARGES
+# ---------------------------------------------------------
+
+with st.expander("🅵 Myotonic Discharges - Code: EMG_MYO_06"):
+
+    st.markdown("""
+### 💉 What are Myotonic Discharges?
+
+Myotonic discharges are spontaneous waxing and waning electrical discharges
+producing the classic 'dive bomber' sound on EMG.
+
+### 🎯 Importance
+
+Characteristic finding in myotonic disorders.
+
+### Normal Finding
+
+Absent
+
+### If Present
+
+Possible Educational Associations
+
+• Myotonic Dystrophy
+
+• Myotonia Congenita
+
+• Channelopathies
+
+### 🩺 Clinical Significance
+
+Highly suggestive of myotonic muscle disorders.
+
+### 💡 Interpretation Tip
+
+Always correlate with clinical symptoms.
+""")
+
+# ---------------------------------------------------------
+# MUAP AMPLITUDE
+# ---------------------------------------------------------
+
+with st.expander("🅶 MUAP Amplitude - Code: EMG_MUAP_07"):
+
+    st.markdown("""
+### 💉 What is MUAP Amplitude?
+
+Motor Unit Action Potential (MUAP) amplitude reflects the size of the motor unit.
+
+### 🎯 Importance
+
+Evaluates chronic denervation and reinnervation.
+
+### Normal Finding
+
+Normal amplitude according to muscle examined.
+
+### If Increased
+
+Possible Educational Associations
+
+• Chronic Neurogenic Disorder
+
+• Reinnervation
+
+• Motor Neuron Disease
+
+### If Decreased
+
+Possible Educational Associations
+
+• Myopathy
+
+• Muscle Fiber Loss
+
+### 🩺 Clinical Significance
+
+Large amplitudes suggest chronic neurogenic change.
+Small amplitudes suggest myopathic change.
+
+### 💡 Interpretation Tip
+
+Interpret together with duration and recruitment.
+""")
+
+# ---------------------------------------------------------
+# MUAP DURATION
+# ---------------------------------------------------------
+
+with st.expander("🅷 MUAP Duration - Code: EMG_MUAP_08"):
+
+    st.markdown("""
+### 💉 What is MUAP Duration?
+
+Represents the time occupied by one motor unit action potential.
+
+### 🎯 Importance
+
+Helps distinguish neurogenic and myopathic disorders.
+
+### Normal Finding
+
+Normal duration for the selected muscle.
+
+### If Increased
+
+Possible Educational Associations
+
+• Chronic Neurogenic Lesion
+
+• Reinnervation
+
+### If Decreased
+
+Possible Educational Associations
+
+• Myopathy
+
+### 🩺 Clinical Significance
+
+Long duration suggests chronic denervation.
+Short duration suggests myopathy.
+
+### 💡 Interpretation Tip
+
+Always correlate with MUAP amplitude.
+""")
+
+# ---------------------------------------------------------
+# POLYPHASIC POTENTIALS
+# ---------------------------------------------------------
+
+with st.expander("🅸 Polyphasic Potentials - Code: EMG_POLY_09"):
+
+    st.markdown("""
+### 💉 What are Polyphasic Potentials?
+
+Motor unit action potentials having more than four phases.
+
+### 🎯 Importance
+
+May indicate reinnervation or myopathic change.
+
+### Normal Finding
+
+Few polyphasic potentials may be normal.
+
+### If Increased
+
+Possible Educational Associations
+
+• Chronic Neuropathy
+
+• Reinnervation
+
+• Myopathy
+
+### 🩺 Clinical Significance
+
+Increased polyphasic potentials indicate motor unit remodeling.
+
+### 💡 Interpretation Tip
+
+Interpret with MUAP amplitude and duration.
+""")
+
+# ---------------------------------------------------------
+# RECRUITMENT PATTERN
+# ---------------------------------------------------------
+
+with st.expander("🅹 Recruitment Pattern - Code: EMG_REC_10"):
+
+    st.markdown("""
+### 💉 What is Recruitment Pattern?
+
+Recruitment describes how motor units are activated during voluntary contraction.
+
+### 🎯 Importance
+
+Essential for differentiating neurogenic and myopathic disorders.
+
+### Normal Finding
+
+Normal recruitment.
+
+### Reduced Recruitment
+
+Possible Educational Associations
+
+• Peripheral Neuropathy
+
+• Radiculopathy
+
+• Motor Neuron Disease
+
+### Early Recruitment
+
+Possible Educational Associations
+
+• Myopathy
+
+### Absent Recruitment
+
+Possible Educational Associations
+
+• Complete Denervation
+
+• Severe Nerve Injury
+
+### 🩺 Clinical Significance
+
+Reduced recruitment usually suggests neurogenic pathology.
+
+### 💡 Interpretation Tip
+
+Interpret with interference pattern.
+""")
+
+# ---------------------------------------------------------
+# INTERFERENCE PATTERN
+# ---------------------------------------------------------
+
+with st.expander("🅺 Interference Pattern - Code: EMG_INT_11"):
+
+    st.markdown("""
+### 💉 What is Interference Pattern?
+
+Represents the overall electrical activity during maximal voluntary contraction.
+
+### 🎯 Importance
+
+Evaluates functional muscle activation.
+
+### Normal Finding
+
+Full interference pattern.
+
+### Reduced Pattern
+
+Possible Educational Associations
+
+• Neurogenic Disorder
+
+• Severe Weakness
+
+### Early Full Pattern
+
+Possible Educational Associations
+
+• Myopathy
+
+### 🩺 Clinical Significance
+
+Reduced interference generally reflects loss of functioning motor units.
+
+### 💡 Interpretation Tip
+
+Interpret with recruitment pattern and MUAP findings.
+""")
+
+st.divider()
+
+st.info("""
+📘 **Educational Note**
+
+Needle EMG interpretation should **never rely on a single parameter**.
+
+A proper educational interpretation considers:
+
+• Insertional Activity
+• Fibrillation Potentials
+• Positive Sharp Waves
+• Fasciculations
+• CRDs
+• Myotonic Discharges
+• MUAP Amplitude
+• MUAP Duration
+• Polyphasic Potentials
+• Recruitment Pattern
+• Interference Pattern
+
+All findings should be interpreted together with the patient's clinical history, neurological examination, and NCV results.
+""")
+#------
+
+# ===========================================================
+# EMG REPORT ANALYSIS
+# ===========================================================
+
+st.divider()
+
+if st.button("🔍 Analyze EMG Report"):
+
+    st.header("💪 Needle EMG Report Analysis")
+
+    neurogenic = 0
+    myopathic = 0
+    chronic = 0
+
+    # ------------------------------------------------------
+    # INSERTIONAL ACTIVITY
+    # ------------------------------------------------------
+
+    if insertional == "Normal":
+        st.success("✅ Insertional Activity → Normal")
+
+    elif insertional == "Increased":
+        st.warning("🟡 Insertional Activity → Increased")
+        st.write("""
+Possible Educational Significance
+
+• Active Denervation
+
+• Radiculopathy
+
+• Inflammatory Myopathy
+
+• Muscle Membrane Irritation
+""")
+        neurogenic += 1
+
+    else:
+        st.error("🔴 Insertional Activity → Decreased")
+        st.write("""
+Possible Educational Significance
+
+• Fibrosis
+
+• Fatty Muscle Replacement
+
+• Chronic Muscle Disease
+""")
+        chronic += 1
+
+
+    # ------------------------------------------------------
+    # FIBRILLATION
+    # ------------------------------------------------------
+
+    if fibrillation == "Absent":
+        st.success("✅ Fibrillation Potentials → Absent")
+
+    else:
+        st.error(f"🔴 Fibrillation Potentials → {fibrillation}")
+
+        st.write("""
+Educational Interpretation
+
+Presence of fibrillation potentials usually indicates active denervation.
+
+Possible Associations
+
+• Peripheral Neuropathy
+
+• Radiculopathy
+
+• Axonal Injury
+
+• Motor Neuron Disease
+""")
+        neurogenic += 2
+
+
+    # ------------------------------------------------------
+    # POSITIVE SHARP WAVES
+    # ------------------------------------------------------
+
+    if positive_sharp == "Absent":
+        st.success("✅ Positive Sharp Waves → Absent")
+
+    else:
+        st.error(f"🔴 Positive Sharp Waves → {positive_sharp}")
+
+        st.write("""
+Educational Interpretation
+
+Positive sharp waves suggest unstable muscle membrane.
+
+Possible Associations
+
+• Active Denervation
+
+• Radiculopathy
+
+• Peripheral Nerve Injury
+""")
+        neurogenic += 2
+
+
+    # ------------------------------------------------------
+    # FASCICULATION
+    # ------------------------------------------------------
+
+    if fasciculation == "Absent":
+        st.success("✅ Fasciculation Potentials → Absent")
+
+    else:
+        st.warning("🟡 Fasciculation Potentials → Present")
+
+        st.write("""
+Possible Educational Associations
+
+• Benign Fasciculation Syndrome
+
+• Motor Neuron Disease
+
+• Peripheral Neuropathy
+""")
+        neurogenic += 1
+
+
+    # ------------------------------------------------------
+    # CRD
+    # ------------------------------------------------------
+
+    if crd == "Absent":
+        st.success("✅ Complex Repetitive Discharges → Absent")
+
+    else:
+        st.warning("🟡 Complex Repetitive Discharges → Present")
+
+        st.write("""
+Possible Educational Associations
+
+• Chronic Radiculopathy
+
+• Chronic Neuropathy
+
+• Previous Nerve Injury
+""")
+        chronic += 2
+
+
+    # ------------------------------------------------------
+    # MYOTONIC
+    # ------------------------------------------------------
+
+    if myotonic == "Absent":
+        st.success("✅ Myotonic Discharges → Absent")
+
+    else:
+        st.error("🔴 Myotonic Discharges → Present")
+
+        st.write("""
+Possible Educational Associations
+
+• Myotonic Dystrophy
+
+• Myotonia Congenita
+
+• Channelopathy
+""")
+        myopathic += 2
+
+
+    st.divider()
+
+    st.header("📈 MUAP Analysis")
+#----------
+    # ------------------------------------------------------
+    # MUAP AMPLITUDE
+    # ------------------------------------------------------
+
+    if muap_amplitude == "Normal":
+        st.success("✅ MUAP Amplitude → Normal")
+
+    elif muap_amplitude == "Large":
+        st.warning("🟡 MUAP Amplitude → Large")
+
+        st.write("""
+Educational Interpretation
+
+Large MUAPs usually indicate chronic reinnervation.
+
+Possible Educational Associations
+
+• Chronic Neurogenic Disorder
+
+• Motor Neuron Disease
+
+• Old Peripheral Nerve Injury
+
+• Chronic Radiculopathy
+""")
+        neurogenic += 2
+        chronic += 1
+
+    elif muap_amplitude == "Small":
+        st.warning("🟡 MUAP Amplitude → Small")
+
+        st.write("""
+Educational Interpretation
+
+Small MUAPs are commonly associated with myopathic disorders.
+
+Possible Educational Associations
+
+• Myopathy
+
+• Muscular Dystrophy
+
+• Inflammatory Myopathy
+""")
+        myopathic += 2
+
+
+    # ------------------------------------------------------
+    # MUAP DURATION
+    # ------------------------------------------------------
+
+    if muap_duration == "Normal":
+        st.success("✅ MUAP Duration → Normal")
+
+    elif muap_duration == "Long":
+        st.warning("🟡 MUAP Duration → Long")
+
+        st.write("""
+Educational Interpretation
+
+Long duration MUAPs usually indicate chronic denervation and reinnervation.
+
+Possible Educational Associations
+
+• Chronic Radiculopathy
+
+• Peripheral Neuropathy
+
+• Motor Neuron Disease
+""")
+        neurogenic += 2
+        chronic += 1
+
+    elif muap_duration == "Short":
+        st.warning("🟡 MUAP Duration → Short")
+
+        st.write("""
+Educational Interpretation
+
+Short duration MUAPs commonly suggest myopathic disorders.
+
+Possible Educational Associations
+
+• Myopathy
+
+• Muscle Fiber Disease
+""")
+        myopathic += 2
+
+
+    # ------------------------------------------------------
+    # POLYPHASIC POTENTIALS
+    # ------------------------------------------------------
+
+    if polyphasic == "Absent":
+        st.success("✅ Polyphasic Potentials → Absent")
+
+    else:
+        st.warning("🟡 Polyphasic Potentials → Present")
+
+        st.write("""
+Educational Interpretation
+
+Polyphasic MUAPs indicate remodeling of motor units.
+
+Possible Educational Associations
+
+• Chronic Reinnervation
+
+• Peripheral Neuropathy
+
+• Myopathy
+""")
+
+        neurogenic += 1
+        myopathic += 1
+
+
+    # ------------------------------------------------------
+    # RECRUITMENT
+    # ------------------------------------------------------
+
+    if recruitment == "Normal":
+        st.success("✅ Recruitment Pattern → Normal")
+
+    elif recruitment == "Reduced":
+        st.warning("🟡 Recruitment Pattern → Reduced")
+
+        st.write("""
+Possible Educational Associations
+
+• Peripheral Neuropathy
+
+• Radiculopathy
+
+• Motor Neuron Disease
+""")
+
+        neurogenic += 2
+
+    elif recruitment == "Early":
+        st.warning("🟡 Recruitment Pattern → Early")
+
+        st.write("""
+Possible Educational Associations
+
+• Myopathy
+
+• Inflammatory Muscle Disease
+""")
+
+        myopathic += 2
+
+    elif recruitment == "Discrete":
+        st.error("🔴 Recruitment Pattern → Discrete")
+
+        st.write("""
+Possible Educational Associations
+
+• Severe Neurogenic Lesion
+
+• Chronic Denervation
+""")
+
+        neurogenic += 3
+
+    elif recruitment == "Absent":
+        st.error("🔴 Recruitment Pattern → Absent")
+
+        st.write("""
+Possible Educational Associations
+
+• Complete Denervation
+
+• Severe Nerve Injury
+""")
+
+        neurogenic += 4
+
+
+    # ------------------------------------------------------
+    # INTERFERENCE PATTERN
+    # ------------------------------------------------------
+
+    if interference == "Normal":
+        st.success("✅ Interference Pattern → Normal")
+
+    elif interference == "Reduced":
+        st.warning("🟡 Interference Pattern → Reduced")
+
+        st.write("""
+Possible Educational Associations
+
+• Neurogenic Disorder
+
+• Severe Weakness
+
+• Peripheral Neuropathy
+""")
+
+        neurogenic += 2
+
+    elif interference == "Incomplete":
+        st.warning("🟡 Interference Pattern → Incomplete")
+
+        st.write("""
+Possible Educational Associations
+
+• Partial Motor Unit Loss
+
+• Chronic Neurogenic Disorder
+""")
+
+        neurogenic += 2
+
+    elif interference == "Full":
+        st.warning("🟡 Full Interference Pattern")
+
+        st.write("""
+Possible Educational Associations
+
+• Myopathy
+
+• Early Muscle Disease
+""")
+
+        myopathic += 2
+
+    st.divider()
+
+    st.header("🩺 Overall EMG Summary")
+#-------
